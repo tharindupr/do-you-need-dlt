@@ -1,0 +1,22 @@
+<div class="example-container">
+    <form [formGroup]="options">
+        <div>
+            <mat-radio-group>
+              <label>Do you need a shared data storage ?: </label>
+              <mat-radio-button value="0" (change)="newValue(wizardConfig.children[0])"  [attr.disabled]="false">Yes</mat-radio-button>
+              <mat-radio-button value="1" (change)="newValue(wizardConfig.children[1])">No</mat-radio-button>
+
+            </mat-radio-group>
+        </div>
+
+        <div *ngFor="let question of questions">
+          <mat-radio-group>
+            <label>{{question.question}}</label>
+            <mat-radio-button value="0"  (change)="newValue(question.children[0])">Yes</mat-radio-button>
+            <mat-radio-button value="1" (change)="newValue(question.children[1])">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+    </form>
+
+  
+  </div>
