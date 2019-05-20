@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Decision</h1>
+<div mat-dialog-content class="iconmat">
+
+  <mat-icon >{{icon}}</mat-icon>
+   <p>{{data.description}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button >Proceed</button>
+  <button mat-button (click)="onBackClick()">Back</button>
+</div>
