@@ -38,7 +38,7 @@ var json =
                 { value: "Yes", result: { description: "Use a database system", type: "negative" } },
                 { 
                   value: "No", 
-                  question: "Do you want an immutable data store ?",
+                  question: "Do you want a tamper proof log of all actions happening in the data store ?",
                   children:[
                         {
                           value:"Yes",

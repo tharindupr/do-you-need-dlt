@@ -18,3 +18,11 @@ example-container {
   .example-container .mat-radio-button {
     margin: 0 12px;
   }
+
+
+.question {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+}
