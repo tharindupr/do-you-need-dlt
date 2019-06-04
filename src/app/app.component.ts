@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import * as d3 from "d3";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,11 @@ export class AppComponent {
   loadMyWizard(){
      this.loadWizard = true;
   }
+
+  ngAfterContentInit() {
+    d3.select("p").style("color", "red");
+  }
+  
 }
 
 

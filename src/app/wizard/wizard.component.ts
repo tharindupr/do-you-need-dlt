@@ -1,7 +1,9 @@
+import * as d3 from "d3";
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ResultComponent} from '../result/result.component';
+
 
 @Component({
   selector: 'app-wizard',
@@ -50,13 +52,28 @@ export class WizardComponent implements OnInit {
 
  
   ngOnInit() {
-
+   
   }
 
   openDialog(descriptionData): void {
     console.log(descriptionData)
     const dialogRef = this.dialog.open(ResultComponent, {data: {description: descriptionData.description, type: descriptionData.type}});
   }
+
+  ngAfterContentInit() {
+    d3.select("p").style("color", "red");
+  }
+  
+  // radius = 10;
+  // clicked(event: any) {
+  //   d3.select(event.target).append('circle')
+  //     .attr('cx', event.x)
+  //     .attr('cy', event.y)
+  //     .attr('r', () => {
+  //       return this.radius;
+  //     })
+  //     .attr('fill', 'red');
+  // }
 
 }
 
