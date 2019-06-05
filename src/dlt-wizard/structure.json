@@ -56,7 +56,57 @@
                                                                                     "children":[
                                                                                         {
                                                                                             "label":"There's a potential use case for DLT",
-                                                                                            "type":"end"
+                                                                                            "type":"end",
+                                                                                            "children":[
+                                                                                                {
+                                                                                                  "label": "Does everyone need to have equal rights?", 
+                                                                                                  "type" : "split",
+                                                                                                  "children":[
+                                                                                                      {
+                                                                                                        "label": "Yes", 
+                                                                                                        "type" : "split",
+                                                                                                        "children" : [
+                                                                                                            {
+                                                                                                                "label": "Use a Private Permissioned DLT", 
+                                                                                                                "type" : "end"   
+                                                                                                            }
+                                                                                                        ]    
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "label": "No", 
+                                                                                                        "type" : "split",
+                                                                                                        "children":[
+                                                                                                            {
+                                                                                                                "label": "Allow everyone to write data ?", 
+                                                                                                                "type" : "split",
+                                                                                                                "children":[
+                                                                                                                    {
+                                                                                                                        "label": "Yes", 
+                                                                                                                        "type" : "split",
+                                                                                                                        "children" : [
+                                                                                                                            {
+                                                                                                                                "label": "Use a Public Permission-less DLT", 
+                                                                                                                                "type" : "end"   
+                                                                                                                            }
+                                                                                                                        ]    
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "label": "No", 
+                                                                                                                        "type" : "split",
+                                                                                                                        "children" : [
+                                                                                                                            {
+                                                                                                                                "label": "Use a Public Permissioned DLT", 
+                                                                                                                                "type" : "end"   
+                                                                                                                            }
+                                                                                                                        ]    
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]   
+                                                                                                      }
+                                                                                                  ]     
+                                                                                                }
+                                                                                            ]
                                                                                         }
                                                                                     ]
                                                                                 },
