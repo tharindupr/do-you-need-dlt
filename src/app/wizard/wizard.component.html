@@ -1,29 +1,14 @@
 <div class="example-container">
-    <form [formGroup]="options">
-        <div>
-            <mat-radio-group class="question">
-              <label>Do you need a shared data storage ?: </label>
-              <mat-radio-button value="0" (change)="newValue(wizardConfig.children[0])"  [attr.disabled]="false">Yes</mat-radio-button>
-              <mat-radio-button value="1" (change)="newValue(wizardConfig.children[1])">No</mat-radio-button>
+   
+ 
 
-            </mat-radio-group>
-        </div>
-
-        <div *ngFor="let question of questions">
-          <mat-radio-group class="question">
-            <label>{{question.question}}</label>
-            <mat-radio-button value="0"  (change)="newValue(question.children[0])">Yes</mat-radio-button>
-            <mat-radio-button value="1" (change)="newValue(question.children[1])">No</mat-radio-button>
-          </mat-radio-group>
-        </div>
-    </form>
-
-    
+  <div id="body">
+    <div id="footer">
+      <div class="hint">click to expand or collapse</div>
+     
+    </div>
+  </div>
 
   
 </div>
 
-
-<svg width="100%" height="1200"  (click)="clicked($event)">
-  <text x="10" y="20">Click anywhere</text>
-</svg>

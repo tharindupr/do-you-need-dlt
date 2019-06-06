@@ -5,6 +5,7 @@ example-container {
   
   .example-container > * {
     width: 100%;
+    height: 100%
   }
   
   .example-container form {
@@ -19,10 +20,3 @@ example-container {
     margin: 0 12px;
   }
 
-
-.question {
-  padding-top: 50px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-  padding-left: 30px;
-}
