@@ -52,7 +52,7 @@ export class WizardComponent implements OnInit {
   var treemap = d3.tree().size([height, width]);
 
   // Assigns parent, children, height, depth
-  root = d3.hierarchy(treeData, function(d) { return d.children; });
+  root = d3.hierarchy(treeData, function(d : any) { return d.children; });
   root.y0 = height / 2;
   root.x0 = 0;
 
@@ -76,8 +76,8 @@ export class WizardComponent implements OnInit {
     var treeData = treemap(root);
 
     // Compute the new tree layout.
-    var nodes = treeData.descendants(),
-        links = treeData.descendants().slice(1);
+    var nodes : any = treeData.descendants();
+    var links = treeData.descendants().slice(1);
 
     // Normalize for fixed-depth.
     nodes.forEach(function(d){ d.y = d.depth * 100});
@@ -86,7 +86,7 @@ export class WizardComponent implements OnInit {
 
     // Update the nodes...
     var node = svg.selectAll('g.node')
-        .data(nodes, function(d) {return d.id || (d.id = ++i); });
+        .data(nodes, function(d : any) {return d.id || (d.id = ++i); });
 
     // Enter any new modes at the parent's previous position.
     var nodeEnter = node.enter().append('g')
@@ -100,21 +100,21 @@ export class WizardComponent implements OnInit {
     nodeEnter.append('svg:rect')
         .attr('class', 'node')
         .attr('height', '20')
-        .attr("x", function(d) {
+        .attr("x", function(d : any) {
           var label = d.data.label;
           var text_len = label.length * 6;
           var width = d3.max([70, text_len])
           return -width / 2;
         })
-        .attr("width", function(d) {
+        .attr("width", function(d : any) {
           var label = d.data.label;
           var text_len = label.length * 6;
           var width = d3.max([70, text_len])
           return width+8;
         })
         //.attr('r', 1e-6)
-        .style("stroke", function(d) { return d.data.type === "split" ? "steelblue" :  d.data.type === "end" ? "#d41111" : "olivedrab";})
-        .style("fill", function(d) {
+        .style("stroke", function(d : any) { return d.data.type === "split" ? "steelblue" :  d.data.type === "end" ? "#d41111" : "olivedrab";})
+        .style("fill", function(d : any) {
             return d._children ? "lightsteelblue" : "#fff";
         });
 
@@ -122,7 +122,7 @@ export class WizardComponent implements OnInit {
     nodeEnter.append('svg:text')
         .attr("dy", "13px")
         .attr("text-anchor", "middle")
-        .text(function(d) { return d.data.label; });
+        .text(function(d : any) { return d.data.label; });
 
     // UPDATE
     var nodeUpdate = nodeEnter.merge(node);
@@ -136,7 +136,7 @@ export class WizardComponent implements OnInit {
 
     // Update the node attributes and style
     nodeUpdate.select('rect')
-      .style("fill", function(d) {
+      .style("fill", function(d : any) {
           return d._children ? "lightsteelblue" : "#fff";
       })
       .attr('cursor', 'pointer');
@@ -190,7 +190,7 @@ export class WizardComponent implements OnInit {
         .remove();
 
     // Store the old positions for transition.
-    nodes.forEach(function(d){
+    nodes.forEach(function(d : any){
       d.x0 = d.y;
       d.y0 = d.x;
     });
