@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as d3 from "d3";
 
 @Component({
   selector: 'app-root',
@@ -10,62 +9,191 @@ import * as d3 from "d3";
 
 
 
-export class AppComponent {
-  config = json;
+export class AppComponent implements OnInit{
+  config1 = json1;
+  config2 = json2;
   private loadWizard = false;
   loadMyWizard(){
      this.loadWizard = true;
   }
 
   ngAfterContentInit() {
-    d3.select("p").style("color", "red");
+  }
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['']
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['']
+    });
   }
   
 }
 
 
-var json =
+var json1 =
 {
-  question: "Do you need a shared data storage ?:",
-  children: [
-    {
-      value: "Yes",
-      question: "Are multiple parties involved in writing data?:",
-      children: [
-        {
-          value: "Yes",
-          question: "Do you need to change/delete the original data once written ?:",
-          children: [
-            { value: "Yes", result: {  description: "Use a database system", type: "negative" } },
-            { 
-              value: "No", 
-              question: "Do you worry about the time taken to commit data  ?",
-              children: [
-                { value: "Yes", result: { description: "Use a database system", type: "negative" } },
-                { 
-                  value: "No", 
-                  question: "Do you want a tamper proof log of all actions happening in the data store ?",
-                  children:[
-                        {
-                          value:"Yes",
-                          question: "Do you want to eliminate entities controlling the data store ? ",
-                          children:[
-                            { value: "Yes", result: {description: "There's a potential use case for DLT", type: "positive" } },
-                            { value: "No", result: {description: "Use a managed db system", type: "negative" } }
-                          ]
-                        },
-                        {value:"No", result: {description: "Use a database system", type: "negative" }}
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        { value: "No", result: {description: "Use a database system", type: "negative" } }
-        
-      ]
-    },
+  "label":"Do you need a shared data storage ? ",
+  "type":"split",
+  "children":[
+     {
+        "label":"Yes",
+        "type":"split",
+        "children":[
+           {
+              "label":"Are multiple parties involved in writing data? ",
+              "type":"split",
+              "children":[
+                  {
+                     "label":"Yes",
+                     "type":"split",
+                     "children":[
+                          {
+                          "label":"Do you need to change/delete the original data once written ? ",
+                          "type":"split",
+                          "children":[
+                              {
+                              "label":"Yes",
+                              "type":"leaf"
+                              },
+                              {
+                                  "label":"No",
+                                  "type":"split",
+                                   "children":[
+                                      {
+                                          "label":"Do you worry about the time taken to commit data  ?",
+                                          "type":"split",
+                                          "children":[
+                                              {
+                                                  "label":"Yes",
+                                                  "type":"leaf"
+                                              },
+                                              {
+                                                  "label":"No",
+                                                  "type":"split",
+                                                  "children":[
+                                                      {
+                                                          "label":"Do you want a tamper proof log of all actions happening in the data store ?",
+                                                          "type":"split",
+                                                          "children":[
+                                                              {
+                                                                  "label":"Yes",
+                                                                  "type":"split",
+                                                                  "children":[
+                                                                      {
+                                                                          "label":"Do you want to eliminate entities controlling the data store ?",
+                                                                          "type":"split",
+                                                                          "children":[
+                                                                              {
+                                                                                  "label":"Yes",
+                                                                                  "type":"split",
+                                                                                  "children":[
+                                                                                      {
+                                                                                          "label":"There's a potential use case for DLT",
+                                                                                          "type":"end"
+                                                                            
+                                                                                      }
+                                                                                  ]
+                                                                              },
+                                                                              {
+                                                                                  "label":"No",
+                                                                                  "type":"leaf"
+                                                                              }
+                                                                          ]
+                                                                      }
 
-    { value: "No", result: {description: "Use a spreadsheet", type: "negative"} },
+                                                                  ]
+                                                              },
+                                                              {
+                                                                  "label":"No",
+                                                                  "type":"leaf"
+                                                              }
+
+                                                          ]
+                                                      }
+                                                      
+                                                  ]  
+                                              }
+                                              
+                                          ]  
+                                      }
+                                   ]
+                              }
+                          ]
+                          }
+                      ]
+                  },
+                  {
+                      "label":"No",
+                      "type":"leaf"
+                  }
+                  
+               ]
+           }
+        ]
+     },
+     {
+      "label":"No",
+      "type":"leaf"
+     }
   ]
 };
+
+
+var json2 =  
+ {
+    "label": "Does everyone need to have equal rights?", 
+    "type" : "split",
+    "children":[
+        {
+          "label": "Yes", 
+          "type" : "split",
+          "children" : [
+              {
+                  "label": "Use a Private Permissioned DLT", 
+                  "type" : "end"   
+              }
+          ]    
+        },
+        {
+          "label": "No", 
+          "type" : "split",
+          "children":[
+              {
+                  "label": "Allow everyone to write data ?", 
+                  "type" : "split",
+                  "children":[
+                      {
+                          "label": "Yes", 
+                          "type" : "split",
+                          "children" : [
+                              {
+                                  "label": "Use a Public Permission-less DLT", 
+                                  "type" : "end"   
+                              }
+                          ]    
+                      },
+                      {
+                          "label": "No", 
+                          "type" : "split",
+                          "children" : [
+                              {
+                                  "label": "Use a Public Permissioned DLT", 
+                                  "type" : "end"   
+                              }
+                          ]    
+                      }
+                  ]
+              }
+          ]   
+        }
+    ]     
+  }
+

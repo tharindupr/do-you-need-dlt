@@ -12,25 +12,13 @@ import {ResultComponent} from '../result/result.component';
 })
 export class WizardComponent implements OnInit {
 
+  @Input() phase1: object;
+  @Input() name: String;
 
- 
+  constructor() {
 
-
-
-
-  @Input() wizardConfig: object;
-  options: FormGroup;
-  questions =[];
-  answers = [];
-
-  constructor(fb: FormBuilder, public dialog: MatDialog) {
-    this.options = fb.group({
-
-    });
       
   }
-
-
 
 
   ngOnInit() {
@@ -38,42 +26,23 @@ export class WizardComponent implements OnInit {
   }
 
 
-
   ngAfterContentInit() {
-    var treeData =
-    {
-      "name": "Top Level",
-      "children": [
-        { 
-          "name": "Level 2: A",
-          "children": [
-            { 
-              "name": "Son of A",
-              "children": [ 
-                  { "name": "Son of A" },
-                  { "name": "Daughter of A" } 
-              ],
-            },
-              
-            { "name": "Daughter of A" }
-            
-          ]
-        },
-        { "name": "Level 2: B" }
-      ]
-    };
+    var treeData = this.phase1;
+    
 
   // Set the dimensions and margins of the diagram
   var margin = {top: 20, right: 90, bottom: 30, left: 90},
-      width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+  width = 960 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3.select("#body").append("svg")
+
+  console.log("#"+this.name);
+  var svg = d3.select("#"+this.name).append("svg")
       .attr("width", width + margin.right + margin.left)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("height", 1300)
     .append("g")
       .attr("transform", "translate("
             + margin.left + "," + margin.top + ")");
@@ -131,23 +100,32 @@ export class WizardComponent implements OnInit {
       .on('click', click);
 
     // Add Circle for the nodes
-    nodeEnter.append('circle')
+    nodeEnter.append('svg:rect')
         .attr('class', 'node')
-        .attr('r', 1e-6)
+        .attr('height', '20')
+        .attr("x", function(d) {
+          var label = d.data.label;
+          var text_len = label.length * 6;
+          var width = d3.max([80, text_len])
+          return -width / 2;
+        })
+        .attr("width", function(d) {
+          var label = d.data.label;
+          var text_len = label.length * 6;
+          var width = d3.max([90, text_len])
+          return width+8;
+        })
+        //.attr('r', 1e-6)
+        .style("stroke", function(d) { return d.data.type === "split" ? "steelblue" :  d.data.type === "end" ? "#d41111" : "olivedrab";})
         .style("fill", function(d) {
             return d._children ? "lightsteelblue" : "#fff";
         });
 
     // Add labels for the nodes
-    nodeEnter.append('text')
-        .attr("dy", ".35em")
-        .attr("x", function(d) {
-            return d.children || d._children ? -13 : 13;
-        })
-        .attr("text-anchor", function(d) {
-            return d.children || d._children ? "end" : "start";
-        })
-        .text(function(d) { return d.data.name; });
+    nodeEnter.append('svg:text')
+        .attr("dy", "13px")
+        .attr("text-anchor", "middle")
+        .text(function(d) { return d.data.label; });
 
     // UPDATE
     var nodeUpdate = nodeEnter.merge(node);
@@ -160,8 +138,7 @@ export class WizardComponent implements OnInit {
       });
 
     // Update the node attributes and style
-    nodeUpdate.select('circle.node')
-      .attr('r', 10)
+    nodeUpdate.select('rect')
       .style("fill", function(d) {
           return d._children ? "lightsteelblue" : "#fff";
       })
@@ -223,13 +200,12 @@ export class WizardComponent implements OnInit {
 
     // Creates a curved (diagonal) path from parent to the child nodes
     function diagonal(s, d) {
-
       var path = `M ${s.x} ${s.y}
               C ${(s.x + d.x) / 2} ${s.y},
                 ${(s.x + d.x) / 2} ${d.y},
                 ${d.x} ${d.y}`;
 
-      return path
+      return path;
     }
 
     // Toggle children on click.

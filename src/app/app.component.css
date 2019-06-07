@@ -23,7 +23,8 @@
 
 .mat-card{
     margin-top: 6%;
-    max-width: 50%;
+    max-width: 70%;
+    height: 1500px;
     margin:auto;
     background-color: white;
 }
