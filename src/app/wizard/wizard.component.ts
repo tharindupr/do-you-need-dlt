@@ -96,7 +96,7 @@ export class WizardComponent implements OnInit {
       })
       .on('click', click);
 
-    // Add Circle for the nodes
+    // Add Circle for the nodess
     nodeEnter.append('svg:rect')
         .attr('class', 'node')
         .attr('height', '20')
