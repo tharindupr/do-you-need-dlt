@@ -37,6 +37,10 @@
 
                   <div *ngIf= 'loadWizard'>
                         <app-wizard  [phase1]="config1" name="one"></app-wizard>
+
+                        <div id="one">
+
+                        </div>
                   </div> 
 
                   <div>
@@ -50,8 +54,12 @@
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>DLT configuration ?</ng-template>
                   <div *ngIf= 'loadWizard'>
-                      <app-wizard  [phase1]="config2"></app-wizard>
-                  </div> 
+                      <app-wizard  [phase1]="config2" name="two"></app-wizard>
+
+                      <div id="two">
+ 
+                      </div>
+                </div> 
 
                   <div>
                     <button mat-button (click)="loadMyWizard();" >Launch Wizard</button>
