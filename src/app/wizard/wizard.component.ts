@@ -16,8 +16,6 @@ export class WizardComponent implements OnInit {
   @Input() name: String;
 
   constructor() {
-
-      
   }
 
 
@@ -39,7 +37,6 @@ export class WizardComponent implements OnInit {
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
 
-  console.log("#"+this.name);
   var svg = d3.select("#"+this.name).append("svg")
       .attr("width", width + margin.right + margin.left)
       .attr("height", 1300)
@@ -106,13 +103,13 @@ export class WizardComponent implements OnInit {
         .attr("x", function(d) {
           var label = d.data.label;
           var text_len = label.length * 6;
-          var width = d3.max([80, text_len])
+          var width = d3.max([70, text_len])
           return -width / 2;
         })
         .attr("width", function(d) {
           var label = d.data.label;
           var text_len = label.length * 6;
-          var width = d3.max([90, text_len])
+          var width = d3.max([70, text_len])
           return width+8;
         })
         //.attr('r', 1e-6)
@@ -134,7 +131,7 @@ export class WizardComponent implements OnInit {
     nodeUpdate.transition()
       .duration(duration)
       .attr("transform", function(d) { 
-          return "translate(" + d.x + "," + d.y+ ")";
+          return "translate(" + (d.x + 10)  + "," + d.y+ ")";
       });
 
     // Update the node attributes and style

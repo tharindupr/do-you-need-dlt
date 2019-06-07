@@ -59,10 +59,9 @@
                       <div id="two">
  
                       </div>
-                </div> 
+                  </div> 
 
                   <div>
-                    <button mat-button (click)="loadMyWizard();" >Launch Wizard</button>
                     <button mat-button matStepperPrevious (click)="stepper.reset()">Back</button>
                     <button mat-button matStepperNext>Next</button>
                   </div>
@@ -70,21 +69,40 @@
               </mat-step>
 
               <mat-step>
-                <ng-template matStepLabel>Type of DLT ?</ng-template>
-                You are now done.
-                <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button (click)="stepper.reset()">Back</button>
-                </div>
+
+                  <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>Type of DLT ?</ng-template>
+                      <div *ngIf= 'loadWizard'>
+                          <app-wizard  [phase1]="config2" name="two"></app-wizard>
+    
+                          <div id="three">
+     
+                          </div>
+                      </div> 
+    
+                      <div>
+                        <button mat-button matStepperPrevious (click)="stepper.reset()">Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
               </mat-step>
 
               <mat-step>
-                  <ng-template matStepLabel>Architecture ?</ng-template>
-                  You are now done.
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                  </div>
+                  <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>Architecture ?</ng-template>
+                      <div *ngIf= 'loadWizard'>
+                          <app-wizard  [phase1]="config2" name="two"></app-wizard>
+    
+                          <div id="four">
+     
+                          </div>
+                      </div> 
+    
+                      <div>
+                        <button mat-button matStepperPrevious (click)="stepper.reset()">Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
               </mat-step>
 
           </mat-horizontal-stepper>
