@@ -33,8 +33,6 @@ export class AppComponent implements OnInit{
   }
 
   ngAfterContentInit() {
-
-    
   }
 
   firstFormGroup: FormGroup;
