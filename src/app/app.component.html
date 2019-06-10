@@ -30,89 +30,31 @@
       <mat-card-content>
 
           <mat-horizontal-stepper linear #stepper>
-              <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-
-                <form [formGroup]="firstFormGroup">
-                  <ng-template matStepLabel>Will DLT suites you ?</ng-template>
-
+              <mat-step *ngFor="let con of configurations; let i = index" completed="false">
+                <form>
+                  <ng-template matStepLabel>{{con.name}}</ng-template>
+                  
                   <div *ngIf= 'loadWizard'>
-                        <app-wizard  [phase1]="config1" name="one"></app-wizard>
+                        <app-wizard  [phase]="con" (nextEmiter)="setLoadNext($event)"></app-wizard>
 
-                        <div id="one">
-
+                        <div id="one" *ngIf="con.id=='one'">
+                        </div>
+                        <div id="two" *ngIf="con.id=='two'">
+                        </div>
+                        <div id="three" *ngIf="con.id=='three'">
+                        </div>
+                        <div id="four" *ngIf="con.id=='four'">
                         </div>
                   </div> 
 
                   <div>
                     <button mat-button (click)="loadMyWizard();" >Launch Wizard</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button (click)="next(stepper);">Next</button>
                   </div>
                 </form>
-              </mat-step>
-              
-              <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-                <form [formGroup]="secondFormGroup">
-                  <ng-template matStepLabel>DLT configuration ?</ng-template>
-                  <div *ngIf= 'loadWizard'>
-                      <app-wizard  [phase1]="config2" name="two"></app-wizard>
-
-                      <div id="two">
- 
-                      </div>
-                  </div> 
-
-                  <div>
-                    <button mat-button matStepperPrevious (click)="stepper.reset()">Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                  </div>
-                </form>
-              </mat-step>
-
-              <mat-step>
-
-                  <form [formGroup]="secondFormGroup">
-                      <ng-template matStepLabel>Type of DLT ?</ng-template>
-                      <div *ngIf= 'loadWizard'>
-                          <app-wizard  [phase1]="config2" name="three"></app-wizard>
-    
-                          <div id="three">
-     
-                          </div>
-                      </div> 
-    
-                      <div>
-                        <button mat-button matStepperPrevious (click)="stepper.reset()">Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
-                    </form>
-              </mat-step>
-
-              <mat-step>
-                  <form [formGroup]="secondFormGroup">
-                      <ng-template matStepLabel>Architecture ?</ng-template>
-                      <div *ngIf= 'loadWizard'>
-                          <app-wizard  [phase1]="config2" name="four"></app-wizard>
-    
-                          <div id="four">
-     
-                          </div>
-                      </div> 
-    
-                      <div>
-                        <button mat-button matStepperPrevious (click)="stepper.reset()">Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                      </div>
-                    </form>
               </mat-step>
 
           </mat-horizontal-stepper>
-        
-
-
-
-
-
-
         
 
     </mat-card-content>

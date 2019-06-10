@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import {WizardComponent} from './wizard/wizard.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-root',
@@ -12,28 +14,65 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AppComponent implements OnInit{
   config1 = json1;
   config2 = json2;
+  configurations = [
+    {"name" : "Will DLT suites you ?", "config" : json1, "id":"one" }, 
+    {"name" : "DLT configuration ?", "config" : json2, "id":"two" }, 
+    {"name" : "Type of DLT ?", "config" : json2, "id":"three" }, 
+    {"name" : "Architecture ?", "config" : json2, "id":"four" }];
   private loadWizard = false;
+  loadNext = false;
+
+  //mandotray for catching the component state
+  setLoadNext(event){
+    this.loadNext = event;
+  }
+
   loadMyWizard(){
      this.loadWizard = true;
+     
   }
 
   ngAfterContentInit() {
+
+    
   }
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
 
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['']
+
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['']
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['']
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['']
+    });
+
+    
   }
+
+
+  next(stepper: MatStepper){
+    if(this.loadNext){
+      stepper.selected.completed = true;
+      stepper.next();
+    }
+    else{
+      console.log("hello")
+    }
+  }
+  
   
 }
 
