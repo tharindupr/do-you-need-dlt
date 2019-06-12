@@ -190,7 +190,39 @@ var json2 =
     "type" : "split",
     "children":[
         {
-          "label": "Yes", 
+            "label": "Yes", 
+            "type" : "split",
+            "children":[
+                {
+                    "label": "Allow everyone to write data ?", 
+                    "type" : "split",
+                    "children":[
+                        {
+                            "label": "Yes", 
+                            "type" : "split",
+                            "children" : [
+                                {
+                                    "label": "Use a Public Permission-less DLT", 
+                                    "type" : "end"   
+                                }
+                            ]    
+                        },
+                        {
+                            "label": "No", 
+                            "type" : "split",
+                            "children" : [
+                                {
+                                    "label": "Use a Public Permissioned DLT", 
+                                    "type" : "end"   
+                                }
+                            ]    
+                        }
+                    ]
+                }
+            ]   
+        },
+        {
+          "label": "No", 
           "type" : "split",
           "children" : [
               {
@@ -198,39 +230,8 @@ var json2 =
                   "type" : "end"   
               }
           ]    
-        },
-        {
-          "label": "No", 
-          "type" : "split",
-          "children":[
-              {
-                  "label": "Allow everyone to write data ?", 
-                  "type" : "split",
-                  "children":[
-                      {
-                          "label": "Yes", 
-                          "type" : "split",
-                          "children" : [
-                              {
-                                  "label": "Use a Public Permission-less DLT", 
-                                  "type" : "end"   
-                              }
-                          ]    
-                      },
-                      {
-                          "label": "No", 
-                          "type" : "split",
-                          "children" : [
-                              {
-                                  "label": "Use a Public Permissioned DLT", 
-                                  "type" : "end"   
-                              }
-                          ]    
-                      }
-                  ]
-              }
-          ]   
         }
+        
     ]     
   }
 
