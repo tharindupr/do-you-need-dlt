@@ -29,7 +29,6 @@ export class WizardComponent implements OnInit {
      this.setEmiter(false)
   }
 
-
   ngAfterContentInit() {
       var treeData = this.phase.config;
 
