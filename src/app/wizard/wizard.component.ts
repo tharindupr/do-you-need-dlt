@@ -25,7 +25,6 @@ export class WizardComponent implements OnInit {
      this.nextEmiter.emit(false);
   }
 
-
   ngOnInit() {
      this.setEmiter(false)
   }
