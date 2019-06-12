@@ -186,7 +186,7 @@ var json1 =
 
 var json2 =  
  {
-    "label": "Does everyone need to have equal rights?", 
+    "label": "Do you need public verifialbility ?", 
     "type" : "split",
     "children":[
         {
