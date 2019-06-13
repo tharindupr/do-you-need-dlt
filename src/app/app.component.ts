@@ -186,7 +186,7 @@ var json1 =
 
 var json2 =  
  {
-    "label": "Do you need public verifialbility ?", 
+    "label": "Do you need public verifialbility?", 
     "type" : "split",
     "children":[
         {
@@ -194,7 +194,7 @@ var json2 =
             "type" : "split",
             "children":[
                 {
-                    "label": "Allow everyone to write data ?", 
+                    "label": "Allow everyone to write data?", 
                     "type" : "split",
                     "children":[
                         {
