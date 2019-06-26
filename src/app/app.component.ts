@@ -3,6 +3,23 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {WizardComponent} from './wizard/wizard.component';
 import { MatStepper } from '@angular/material/stepper';
 
+
+export interface PeriodicElement {
+    mode: string;
+    platform: string;
+    sc: string;
+    throughput: string;
+    quantum:string;
+  }
+  
+  const ELEMENT_DATA: PeriodicElement[] = [
+    {platform: 'Sawtooth', mode: 'Permissioned/Permissionless Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
+    {platform: 'Fabric', mode: 'Permissioned Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
+    {platform: 'Corda', mode: 'Permissioned Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
+    {platform: 'Libra', mode: 'Permissioned Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
+  ];
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +29,13 @@ import { MatStepper } from '@angular/material/stepper';
 
 
 export class AppComponent implements OnInit{
+
+  //table
+  displayedColumns: string[] = ['platform', 'mode', 'sc', 'throughput', 'quantum'];
+  dataSource = ELEMENT_DATA;
+  
+
+
   config1 = json1;
   config2 = json2;
   configurations = [
@@ -67,7 +91,9 @@ export class AppComponent implements OnInit{
       stepper.next();
     }
     else{
-      console.log("hello")
+      console.log("hello");
+      //stepper.selected.completed = true;
+      //stepper.next();
     }
   }
   
