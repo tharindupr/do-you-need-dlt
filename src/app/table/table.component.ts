@@ -19,9 +19,6 @@ export class TableComponent {
 }
 
 
-
-
-
 var platforms =[  
   {  
      "name":"Bitcoin",
@@ -96,7 +93,7 @@ var platforms =[
 
         ],
         "cons":[  
-     "Mining algorithm favors the people having a large number of ETH tokens"
+     "Mining algorithm favors the people having a large number of ETH tokens."
         ]
      }
   },
