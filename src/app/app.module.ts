@@ -6,19 +6,20 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule, MatInputModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatStepperModule, 
-  MatSelectModule, MatRadioModule, MatDialogModule, MatChipsModule, MatListModule, MatTableModule} from '@angular/material';
+  MatSelectModule, MatRadioModule, MatDialogModule, MatChipsModule, MatListModule, MatTableModule, MatAccordion, MatExpansionModule, MatSortModule, MatPaginatorModule, MatGridListModule} from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { WizardComponent } from './wizard/wizard.component';
 import { ResultComponent } from './result/result.component';
-import { MindmapComponent } from './mindmap/mindmap.component'
+import { TableComponent } from './table/table.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     WizardComponent,
     ResultComponent,
-    MindmapComponent
+    TableComponent
   ],
   entryComponents: [ResultComponent],
   imports: [
@@ -41,6 +42,8 @@ import { MindmapComponent } from './mindmap/mindmap.component'
     MatChipsModule,
     MatListModule,
     MatTableModule,
+    FormsModule, 
+    MatExpansionModule, MatSortModule, MatPaginatorModule, MatGridListModule,
 
     FormsModule,
     ReactiveFormsModule

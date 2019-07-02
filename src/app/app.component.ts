@@ -4,22 +4,6 @@ import {WizardComponent} from './wizard/wizard.component';
 import { MatStepper } from '@angular/material/stepper';
 
 
-export interface PeriodicElement {
-    mode: string;
-    platform: string;
-    sc: string;
-    throughput: string;
-    quantum:string;
-  }
-  
-  const ELEMENT_DATA: PeriodicElement[] = [
-    {platform: 'Sawtooth', mode: 'Permissioned/Permissionless Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
-    {platform: 'Fabric', mode: 'Permissioned Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
-    {platform: 'Corda', mode: 'Permissioned Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
-    {platform: 'Libra', mode: 'Permissioned Public or Private', sc: 'Python', throughput: '70TPS', quantum:'No'},
-  ];
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,20 +13,13 @@ export interface PeriodicElement {
 
 
 export class AppComponent implements OnInit{
-
-  //table
-  displayedColumns: string[] = ['platform', 'mode', 'sc', 'throughput', 'quantum'];
-  dataSource = ELEMENT_DATA;
-  
-
-
   config1 = json1;
   config2 = json2;
   configurations = [
     {"name" : "Will DLT suites you ?", "config" : json1, "id":"one" }, 
     {"name" : "DLT configuration ?", "config" : json2, "id":"two" }, 
     {"name" : "Type of DLT ?", "config" : json2, "id":"three" }, 
-    {"name" : "Architecture ?", "config" : json2, "id":"four" }];
+    {"name" : "Summary", "config" : json2, "id":"four" }];
   private loadWizard = false;
   loadNext = false;
 
@@ -92,8 +69,8 @@ export class AppComponent implements OnInit{
     }
     else{
       console.log("hello");
-      //stepper.selected.completed = true;
-      //stepper.next();
+      stepper.selected.completed = true;
+      stepper.next();
       //comment above
     }
   }
@@ -262,3 +239,5 @@ var json2 =
     ]     
   }
 
+
+  

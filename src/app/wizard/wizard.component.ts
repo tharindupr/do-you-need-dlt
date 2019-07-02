@@ -258,119 +258,79 @@ export class WizardComponent implements OnInit {
   loadMindMap(){
       var treeData =
       {  
-        "name":"DLT",
+        "name":"Data Structure",
         "children":[  
            {  
-              "name":"Data Structure",
+              "name":"Blockchain",
               "children":[  
                  {  
-                    "name":"Blockchain",
+                    "name":"PoW",
                     "children":[  
                        {  
-                          "name":"Consensus",
-                          "children":[  
-                             {  
-                                "name":"PoW",
-                                "children":[
-                                    {
-                                      "name":"BitCoin"
-                                    },
-                                    {
-                                      "name":"Ethereum"
-                                    }
-
-                                ]
-                             },
-                             {  
-                                "name":"BFT",
-                                "children":[
-                                  {
-                                    "name":"LibraBFT",
-                                    "type": 3
-                                  },
-                                  {
-                                    "name":"PBFT",
-                                    "children":[
-                                      {
-                                        "name":"HyperLedger Fabric",
-                                        "type": 3
-                                      },
-                                      {
-                                        "name":"Zilliqa",
-                                        "type": 3
-                                      }
-                                  ]
-                                  },
-                                  {
-                                    "name":"CordaBFT",
-                                    "type": 3
-                                  }
-                              ]
-                             },
-                             {  
-                                "name":"PoS",
-                                "children":[
-                                  {
-                                    "name":"Casper (Ethereum)"
-                                  }
-
-                              ]
-                                
-                            },
-                            {  
-                              "name":"PoEt",
-                              "children":[
-                                  {
-                                    "name":"HyperLedger Sawtooth"
-                                  }
-
-                              ]
-                           }
-                          ]
+                          "name":"BitCoin"
+                       },
+                       {  
+                          "name":"Ethereum"
                        }
                     ]
                  },
                  {  
-                    "name":"Directed Acyclic Graph",
+                    "name":"BFT",
                     "children":[  
                        {  
-                          "name":"Consensus",
-                          "children":[
-                            {
-                              "name":"HashGraph"
-                            },
-                            {
-                              "name":"Distributed PoW"
-                            },
-                            {
-                              "name":"MainChain"
-                            }
-                        ]
-                          
+                          "name":"LibraBFT",
+                          "type":3
+                       },
+                       {  
+                          "name":"PBFT",
+                          "children":[  
+                             {  
+                                "name":"HyperLedger Fabric",
+                                "type":3
+                             },
+                             {  
+                                "name":"Zilliqa",
+                                "type":3
+                             }
+                          ]
+                       },
+                       {  
+                          "name":"CordaBFT",
+                          "type":3
+                       }
+                    ]
+                 },
+                 {  
+                    "name":"PoS",
+                    "children":[  
+                       {  
+                          "name":"Casper (Ethereum)"
+                       }
+                    ]
+                 },
+                 {  
+                    "name":"PoEt",
+                    "children":[  
+                       {  
+                          "name":"HyperLedger Sawtooth"
                        }
                     ]
                  }
               ]
            },
            {  
-              "name":"Characterisitcs",
+              "name":"Directed Acyclic Graph",
               "children":[  
-                {  
-                  "name":"Immutability"
-                },
-                {  
-                  "name":"Decentralization"
-                },
-                {  
-                  "name":"Transparency"
-                },
-                {  
-                  "name":"Democracy"
-                },
-                {  
-                  "name":"Security"
-                }
-             ]
+                 {  
+                    "name":"HashGraph"
+                 },
+                 {  
+                    "name":"Distributed PoW"
+                 },
+                 {  
+                    "name":"MainChain"
+                 }
+              ]
            }
         ]
      };

@@ -1,0 +1,56 @@
+<div class="example-container mat-elevation-z8">
+
+    <mat-accordion displayMode="flat" multi class="mat-table">
+        <section class="mat-elevation-z2 mat-header-row">
+          <span class="mat-header-cell" >Platform</span>
+          <span class="mat-header-cell" >Permission-ed</span>
+          <span class="mat-header-cell" >Permission-less</span>
+          <span class="mat-header-cell" >Consensus</span>
+          <span class="mat-header-cell" >Smart Contract</span>
+          <span class="mat-header-cell" >Data Structure</span>
+          <span class="mat-header-cell" >Token</span>
+          <span class="mat-header-cell" >Throughput</span>
+        </section>
+    <mat-expansion-panel *ngFor="let item of platformArray">
+        <mat-expansion-panel-header  [ngClass]="{'mat-row-selected': item.permissioned=='Yes'}">
+          <span class="mat-cell">{{item.name}}</span>
+          <span class="mat-cell">{{item.permissioned}}</span>
+          <span class="mat-cell">{{item.permissionless}}</span>
+          <span class="mat-cell">{{item.consensus}}</span>
+          <span class="mat-cell">{{item.smart_contract}}</span>
+          <span class="mat-cell">{{item.data_structure}}</span>
+          <span class="mat-cell">{{item.token}}</span>
+          <span class="mat-cell">{{item.tps}}</span>
+        </mat-expansion-panel-header>
+        <mat-card>
+            <mat-card-header>
+              <mat-card-subtitle>Pros</mat-card-subtitle>
+            </mat-card-header>     
+            <mat-card-content>
+              <ul>
+                <li *ngFor="let it of item.specific.pros"> {{it}}</li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card>
+              <mat-card-header>
+                <mat-card-subtitle>Cons</mat-card-subtitle>
+              </mat-card-header>     
+              <mat-card-content>
+                  <ul>
+                      <li *ngFor="let it of item.specific.cons"> {{it}} </li>
+                    </ul>
+              </mat-card-content>
+            </mat-card>
+        
+    </mat-expansion-panel>
+    </mat-accordion>
+ 
+
+  </div>
+  
+  
+  <!-- Copyright 2017 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
