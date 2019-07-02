@@ -60,9 +60,9 @@ var platforms =[
    "open_source": "Yes",
      "specific":{  
         "pros":[  
-     "Has 30 times more developer than the next blockchain community. (by end 2018)",
-     "Ethereum has a total of 15,791 nodes whereas Bitcoin has 9,678 nodes and Ripple has only 809 nodes. (by end 2018) Which means more decentralized network",
-     "Proven reliability : Already running thousands of decentralized applications"
+     "Has 30 times more developer than the next blockchain community. (by end 2018).",
+     "Ethereum has a total of 15,791 nodes whereas Bitcoin has 9,678 nodes and Ripple has only 809 nodes. (by end 2018) Which means more decentralized network.",
+     "Proven reliability : Already running thousands of decentralized applications."
 
         ],
         "cons":[  
