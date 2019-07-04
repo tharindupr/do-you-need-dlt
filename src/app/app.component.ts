@@ -13,6 +13,7 @@ import { MatStepper } from '@angular/material/stepper';
 
 
 export class AppComponent implements OnInit{
+  private isButtonVisible = true;
   config1 = json1;
   config2 = json2;
   configurations = [
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit{
 
   loadMyWizard(){
      this.loadWizard = true;
+     this.isButtonVisible = false;
      
   }
 
@@ -78,113 +80,152 @@ export class AppComponent implements OnInit{
   
 }
 
+var core = {
+    "label":"Are multiple parties involved in writing data?",
+    "type":"split",
+    "children":[
+                {
+                    "label":"Yes",
+                    "type":"split",
+                    "children":[
+                        {
+                            "label":"Do you need to change/delete the original data once written ? ",
+                            "type":"split",
+                            "children":[
+                                {
+                                    "label":"Yes",
+                                    "type":"leaf"
+                                },
+                                {
+                                    "label":"No",
+                                    "type":"split",
+                                    "children":[
+                                        {
+                                            "label":"Are all writers trusted ? ",
+                                            "type":"split",
+                                            "children":[
+                                                {
+                                                    "label":"Yes",
+                                                    "type":"leaf"
+                                                },
+                                                {
+                                                    "label":"No",
+                                                    "type":"split",
+                                                    "children":[
+                                                        {
+                                                            "label":"There's a potential use case for DLT",
+                                                            "type":"end"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label":"No",
+                    "type":"leaf"
+                }
+                
+    ]
+};
+
 
 var json1 =
 {
-  "label":"Do you need a shared data storage ? ",
-  "type":"split",
-  "children":[
-     {
-        "label":"Yes",
-        "type":"split",
-        "children":[
-           {
-              "label":"Are multiple parties involved in writing data? ",
-              "type":"split",
-              "children":[
-                  {
-                     "label":"Yes",
-                     "type":"split",
-                     "children":[
+    "label":"Do you need a shared data storage ? ",
+    "type":"split",
+    "children":[
+       {
+          "label":"Yes",
+          "type":"split",
+          "children":[
+             {
+                "label":"Do you want a tamper proof log of all actions happening in the data store ? ",
+                "type":"split",
+                "children":[
+                    {
+                       "label":"Yes",
+                       "type":"split",
+                       "children":[core]
+  
+                    },
+                    {
+                        "label":"No",
+                        "type":"split",
+                        "children":[
                           {
-                          "label":"Do you need to change/delete the original data once written ? ",
-                          "type":"split",
-                          "children":[
-                              {
-                              "label":"Yes",
-                              "type":"leaf"
-                              },
-                              {
-                                  "label":"No",
-                                  "type":"split",
-                                   "children":[
-                                      {
-                                          "label":"Do you worry about the time taken to commit data  ?",
-                                          "type":"split",
-                                          "children":[
-                                              {
-                                                  "label":"Yes",
-                                                  "type":"leaf"
-                                              },
-                                              {
-                                                  "label":"No",
-                                                  "type":"split",
-                                                  "children":[
-                                                      {
-                                                          "label":"Do you want a tamper proof log of all actions happening in the data store ?",
-                                                          "type":"split",
-                                                          "children":[
-                                                              {
-                                                                  "label":"Yes",
-                                                                  "type":"split",
-                                                                  "children":[
+                              "label":"Do you  manage contractual agreements on data? ",
+                              "type":"split",
+                              "children":[
+                                          {
+                                              "label":"Yes",
+                                              "type":"split",
+                                              "children":[core]
+                                          },
+                                          {
+                                              "label":"No",
+                                              "type":"split",
+                                              "children":[
+                                                  {
+                                                      "label":"Do you need strong audit trails across organizations ?",
+                                                      "type":"split",
+                                                      "children":[
+                                                          {
+                                                              "label":"Yes",
+                                                              "type":"split",
+                                                              "children":[core]
+                                                          },
+                                                          {
+                                                              "label":"No",
+                                                              "type":"split",
+                                                              "children":[
+                                                                  {
+                                                                    "label":"Do you need visibility of the across all parties? ",
+                                                                    "type":"split",
+                                                                    "children":[
                                                                       {
-                                                                          "label":"Do you want to eliminate entities controlling the data store ?",
+                                                                          "label":"Yes",
+                                                                          "type":"split",
+                                                                          "children":[core]
+                                                                      },
+                                                                      {
+                                                                          "label":"No",
                                                                           "type":"split",
                                                                           "children":[
                                                                               {
-                                                                                  "label":"Yes",
-                                                                                  "type":"split",
-                                                                                  "children":[
-                                                                                      {
-                                                                                          "label":"There's a potential use case for DLT",
-                                                                                          "type":"end"
-                                                                            
-                                                                                      }
-                                                                                  ]
-                                                                              },
-                                                                              {
-                                                                                  "label":"No",
+                                                                                  "label":"DLT might not be a solution",
                                                                                   "type":"leaf"
                                                                               }
                                                                           ]
                                                                       }
-
-                                                                  ]
-                                                              },
-                                                              {
-                                                                  "label":"No",
-                                                                  "type":"leaf"
-                                                              }
-
-                                                          ]
-                                                      }
-                                                      
-                                                  ]  
-                                              }
-                                              
-                                          ]  
-                                      }
-                                   ]
-                              }
-                          ]
+                                                                      
+                                                                    ]
+                                                                  }
+                                                              ]
+                                                          }
+                                                      ]
+                                                  }
+                                              ]
+                                          }
+                              ]
                           }
-                      ]
-                  },
-                  {
-                      "label":"No",
-                      "type":"leaf"
-                  }
-                  
-               ]
-           }
-        ]
-     },
-     {
-      "label":"No",
-      "type":"leaf"
-     }
-  ]
+                        ]
+                    }
+                    
+                 ]
+             }
+          ]
+       },
+       {
+        "label":"No",
+        "type":"leaf"
+       }
+    ]
 };
 
 

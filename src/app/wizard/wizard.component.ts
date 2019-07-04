@@ -51,17 +51,23 @@ export class WizardComponent implements OnInit {
 
   loadTree(treeData){
       // Set the dimensions and margins of the diagram
-      var margin = {top: 20, right: 90, bottom: 30, left: 90},
+      var margin = {top: 20, right: 90, bottom: 30, left: 190},
       width = 960 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
 
       // append the svg object to the body of the page
       // appends a 'group' element to 'svg'
       // moves the 'group' element to the top left margin
+      var svgheight;
+      if(this.phase.id == "one")
+        svgheight =  1800;
+      else if (this.phase.id == "two")
+        svgheight =  500;
 
-      var svg = d3.select("#"+this.phase.id).append("svg")
+      var svg = d3.select("#"+this.phase.id)
+          .append("svg")
           .attr("width", width + margin.right + margin.left)
-          .attr("height", 1300)
+          .attr("height", svgheight)
         .append("g")
           .attr("transform", "translate("
                 + margin.left + "," + margin.top + ")");
@@ -93,8 +99,6 @@ export class WizardComponent implements OnInit {
       }
 
       function update(source, SETEMITTER) {
-
-
         //console.log(SETEMITTER); for debuging
 
         // Assigns the x and y position for the nodes
@@ -125,6 +129,8 @@ export class WizardComponent implements OnInit {
         nodeEnter.append('svg:rect')
             .attr('class', 'node')
             .attr('height', '20')
+            .attr('rx', '10')
+            .attr('ry', '10')
             .attr("x", function(d : any) {
               var label = d.data.label;
               var text_len = label.length * 6;
@@ -133,26 +139,35 @@ export class WizardComponent implements OnInit {
             })
             .attr("width", function(d : any) {
               var label = d.data.label;
-              var text_len = label.length * 6;
+              var text_len = label.length * 7;
               var width = d3.max([70, text_len])
               return width+8;
             })
             //.attr('r', 1e-6)
+            .style("stroke-width", "1")
             .style("stroke", function(d : any) { 
               if(d.data.type === "end"){
                 //console.log(emit);
                 SETEMITTER.emit(true); 
               }
-              return d.data.type === "split" ? "steelblue" :  d.data.type === "end" ? "#d41111" : "olivedrab";
+              return d.data.type === "split" ? "#512DA8" :  d.data.type === "end" ? "#00C853" : "#FF1744";
             })
             .style("fill", function(d : any) {
-                return d._children ? "lightsteelblue" : "#fff";
+                return d._children ? "#D1C4E9" : d.data.type === "end" ? "#00C853" : "#fff";
             });
 
         // Add labels for the nodes
         nodeEnter.append('svg:text')
-            .attr("dy", "13px")
             .attr("text-anchor", "middle")
+            .attr("dy", "14px")
+            .attr("dx", function(d : any){
+              console.log(d.data.label.length);
+              if (d.data.label == "Yes" || d.data.label == "No")
+                  return "0%";
+              else 
+                  return "2%";
+            })
+            .style("font-size", "14px")
             .text(function(d : any) { return d.data.label; });
 
         // UPDATE
@@ -235,15 +250,38 @@ export class WizardComponent implements OnInit {
 
           return path;
         }
-
         // Toggle children on click.
         function click(d) {
           if (d.children) {
+              if(d.parent.children.length > 1){
+                d.parent.children.forEach(myFunction);
+                function myFunction(item, index){ 
+                  if(d.data.label != item.data.label){
+                    item._children = item.temp;
+                  }        
+                }
+
+              }
               d._children = d.children;
               d.children = null;
             } else {
+              if(d.parent.children.length > 1){
+                
+                d.parent.children.forEach(myFunction);
+                function myFunction(item, index){ 
+                    if(d.data.label != item.data.label){
+                            console.log(item._children);
+                            item["temp"] = item._children;
+                            item._children = null;
+                    }
+                              
+                }
+
+              }
+
               d.children = d._children;
               d._children = null;
+              //console.log(d);
             }
           //console.log(this.setEmiter);
           update(d, SETEMITTER);

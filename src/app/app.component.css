@@ -24,9 +24,10 @@
 .mat-card{
     margin-top: 6%;
     max-width: 70%;
-    height: 1500px;
+    height: 1000px;
     margin:auto;
     background-color: white;
+    overflow: scroll;
 }
 
 
