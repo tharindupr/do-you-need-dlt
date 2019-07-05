@@ -26,8 +26,10 @@
   }
 
   .mat-row-selected{
-    background: rgb(123, 228, 132);
+    color: rgb(123, 228, 132);
   }
+
+  
   
   .mat-row, .mat-header-row {
     display: flex;
@@ -52,7 +54,16 @@
     overflow: hidden;
     word-wrap: break-word;
   }
+
+  .mat-cell-selected{
+    flex: 1;
+    overflow: hidden;
+    word-wrap: break-word;
+    color : #6200EE;
+
+  }
   
+
 
   .my-grid-tile {
     padding-top: 20px !important;

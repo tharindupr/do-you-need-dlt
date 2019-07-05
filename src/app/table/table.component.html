@@ -1,3 +1,7 @@
+<div id="three" >
+
+</div>
+
 <div class="example-container mat-elevation-z8">
 
     <mat-accordion displayMode="flat" multi class="mat-table">
@@ -12,15 +16,15 @@
           <span class="mat-header-cell" >Throughput</span>
         </section>
     <mat-expansion-panel *ngFor="let item of platformArray">
-        <mat-expansion-panel-header  [ngClass]="{'mat-row-selected': item.permissioned=='Yes'}">
-          <span class="mat-cell">{{item.name}}</span>
-          <span class="mat-cell">{{item.permissioned}}</span>
-          <span class="mat-cell">{{item.permissionless}}</span>
-          <span class="mat-cell">{{item.consensus}}</span>
-          <span class="mat-cell">{{item.smart_contract}}</span>
-          <span class="mat-cell">{{item.data_structure}}</span>
-          <span class="mat-cell">{{item.token}}</span>
-          <span class="mat-cell">{{item.tps}}</span>
+        <mat-expansion-panel-header  >
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}" >{{item.name}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.permissioned}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.permissionless}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.consensus}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.smart_contract}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.data_structure}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.token}}</span>
+          <span class="mat-cell" [ngClass]="{'mat-cell-selected': isColored(item.permissioned, item.permissionless)}">{{item.tps}}</span>
         </mat-expansion-panel-header>
         <mat-card>
             <mat-card-header>

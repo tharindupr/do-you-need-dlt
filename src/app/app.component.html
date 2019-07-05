@@ -41,25 +41,8 @@
                         </div>
                         <div id="two" *ngIf="con.id=='two'">
                         </div>
-                        <div  *ngIf="con.id=='three'" >
-                            <!-- <mat-list> 
-                                <mat-list-item style="height: 600px">
-                                  
-                                </mat-list-item>
-                                <mat-divider></mat-divider>
-                                <mat-list-item style="height: 600px">
-
-                                    
-                                
-                                </mat-list-item>
-                               
-                              </mat-list> -->
-
-                              <div id="three" ></div>
-                              <app-table></app-table>
-
-                              
-                              
+                        <div  *ngIf="con.id=='three' && user_response>1" >
+                              <app-table [user_response]="user_response"></app-table>      
                         </div>
                         <div id="four" *ngIf="con.id=='four'">
                         </div>

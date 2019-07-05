@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {WizardComponent} from './wizard/wizard.component';
 import { MatStepper } from '@angular/material/stepper';
+import * as d3 from 'd3';
 
 
 @Component({
@@ -21,8 +22,10 @@ export class AppComponent implements OnInit{
     {"name" : "DLT configuration ?", "config" : json2, "id":"two" }, 
     {"name" : "Type of DLT ?", "config" : json2, "id":"three" }, 
     {"name" : "Summary", "config" : json2, "id":"four" }];
+
+  user_response = 0;
   private loadWizard = false;
-  loadNext = false;
+  loadNext = 0;
 
   //mandotray for catching the component state
   setLoadNext(event){
@@ -65,14 +68,14 @@ export class AppComponent implements OnInit{
 
 
   next(stepper: MatStepper){
-    if(this.loadNext){
+    if(this.loadNext != 0){
+      this.user_response = this.loadNext;
       stepper.selected.completed = true;
       stepper.next();
     }
     else{
-      console.log("hello");
-      stepper.selected.completed = true;
-      stepper.next();
+    //   stepper.selected.completed = true;
+    //   stepper.next();
       //comment above
     }
   }
@@ -114,7 +117,8 @@ var core = {
                                                     "children":[
                                                         {
                                                             "label":"There's a potential use case for DLT",
-                                                            "type":"end"
+                                                            "type":"end",
+                                                            "output" : 1
                                                         }
                                                     ]
                                                 }
@@ -248,7 +252,8 @@ var json2 =
                             "children" : [
                                 {
                                     "label": "Use a Public Permission-less DLT", 
-                                    "type" : "end"   
+                                    "type" : "end",
+                                    "output" : 2   
                                 }
                             ]    
                         },
@@ -258,7 +263,8 @@ var json2 =
                             "children" : [
                                 {
                                     "label": "Use a Public Permissioned DLT", 
-                                    "type" : "end"   
+                                    "type" : "end",
+                                    "output" : 3   
                                 }
                             ]    
                         }
@@ -272,7 +278,8 @@ var json2 =
           "children" : [
               {
                   "label": "Use a Private Permissioned DLT", 
-                  "type" : "end"   
+                  "type" : "end",
+                  "output" : 4   
               }
           ]    
         }
