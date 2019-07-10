@@ -19,7 +19,7 @@
   </div>
 
   <div>  &nbsp; </div>
-
+  <ngx-fab  (click)="next(stepper);" [backgroundColor]="'#673AB7'" [iconClass]="'fas fa-forward'" ></ngx-fab>
   <mat-card>
 
       <mat-card-header>
@@ -45,20 +45,20 @@
                               <app-table [user_response]="user_response"></app-table>      
                         </div>
                         <div id="four" *ngIf="con.id=='four'">
+
+                          <app-summary></app-summary>
+
                         </div>
                   </div> 
 
                   <div>
                     <button mat-button *ngIf="this.isButtonVisible" (click)="loadMyWizard();" >Launch Wizard</button>
-                    <button mat-button (click)="next(stepper);">Next</button>
                   </div>
                 </form>
               </mat-step>
 
           </mat-horizontal-stepper>
 
-          
-        
         
 
     </mat-card-content>

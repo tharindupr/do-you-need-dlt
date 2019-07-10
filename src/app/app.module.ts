@@ -12,6 +12,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { WizardComponent } from './wizard/wizard.component';
 import { ResultComponent } from './result/result.component';
 import { TableComponent } from './table/table.component';
+import { SummaryComponent } from './summary/summary.component';
+
+import { NgxFabModule } from 'ngx-fab';
 
 
 @NgModule({
@@ -19,13 +22,16 @@ import { TableComponent } from './table/table.component';
     AppComponent,
     WizardComponent,
     ResultComponent,
-    TableComponent
+    TableComponent,
+    SummaryComponent
   ],
   entryComponents: [ResultComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    NgxFabModule,
     
     //Material modules
     MatButtonModule, 

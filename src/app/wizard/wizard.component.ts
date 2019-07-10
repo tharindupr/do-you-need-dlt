@@ -145,10 +145,10 @@ export class WizardComponent implements OnInit {
                 //console.log();
                 SETEMITTER.emit(d.data.output); 
               }
-              return d.data.type === "split" ? "#512DA8" :  d.data.type === "end" ? "#00C853" : "#FF1744";
+              return d.data.type === "split" ? "#512DA8" :  d.data.type === "end" ? "#512DA8" : "#FF1744";
             })
             .style("fill", function(d : any) {
-                return d._children ? "#D1C4E9" : d.data.type === "end" ? "#00C853" : "#fff";
+                return d._children ? "#B39DDB" : d.data.type === "end" ? "#00C853" : "#fff";
             });
 
         // Add labels for the nodes
@@ -177,7 +177,7 @@ export class WizardComponent implements OnInit {
         // Update the node attributes and style
         nodeUpdate.select('rect')
           .style("fill", function(d : any) {
-              return d._children ? "lightsteelblue" : "#fff";
+              return d._children ? "#81D4FA" : d.data.type === "end" ? "#D1C4E9" : "#fff";
           })
           .attr('cursor', 'pointer');
 

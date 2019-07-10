@@ -215,9 +215,9 @@ export class TableComponent {
             console.log(d.data.type);
             console.log(user_response);
             if(d.data.type)
-               return d.data.type.includes(user_response) ? "6200EE" : "lightsteelblue";
+               return d.data.type.includes(user_response) ? "#6200EE" : "#81D4FA";
             else
-               return "lightsteelblue"
+               return "#81D4FA"
          })
          .style("fill", function(d) {
             return d._children ? "#512DA8" : "#fff";
@@ -249,7 +249,7 @@ export class TableComponent {
       nodeUpdate.select('circle.node')
       .attr('r', 10)
       .style("fill", function(d) {
-            return d._children ? "lightsteelblue" : "#fff";
+            return d._children ? "#81D4FA" : "#fff";
       })
       .attr('cursor', 'pointer');
    
