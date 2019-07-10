@@ -138,7 +138,6 @@ var core = {
     ]
 };
 
-
 var json1 =
 {
     "label":"Do you need a shared data storage ? ",
@@ -189,7 +188,7 @@ var json1 =
                                                               "type":"split",
                                                               "children":[
                                                                   {
-                                                                    "label":"Do you need visibility of the across all parties? ",
+                                                                    "label":"Do you need visibility of the transactions across all parties? ",
                                                                     "type":"split",
                                                                     "children":[
                                                                       {
