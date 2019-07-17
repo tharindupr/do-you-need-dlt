@@ -68,3 +68,9 @@
   .my-grid-tile {
     padding-top: 20px !important;
 }
+
+.mat-card img{
+  object-fit: cover; /*this makes de image in src fit to the size of specified below*/
+  width: 70%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 80%;
+}

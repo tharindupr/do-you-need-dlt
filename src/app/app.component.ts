@@ -26,10 +26,15 @@ export class AppComponent implements OnInit{
   user_response = 0;
   private loadWizard = false;
   loadNext = 0;
+  user_platform = "";
 
   //mandotray for catching the component state
   setLoadNext(event){
     this.loadNext = event;
+  }
+
+  setUserPlatform(event){
+    this.user_platform = event;
   }
 
   loadMyWizard(){
@@ -74,8 +79,8 @@ export class AppComponent implements OnInit{
       stepper.next();
     }
     else{
-    //   stepper.selected.completed = true;
-    //   stepper.next();
+      stepper.selected.completed = true;
+      stepper.next();
       //comment above
     }
   }

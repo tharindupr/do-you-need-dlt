@@ -1,6 +1,26 @@
-<div id="three" style="padding-bottom: 4%;">
+<table style="width:100%">
 
-</div>
+    <tr>
+      <td>
+          <div id="three" style="padding-bottom: 4%;">
+            </div>
+
+      </td>
+      <td>
+          <mat-card class="example-card" *ngIf="_selected!='None'" >
+              <mat-card-header>
+                <mat-card-title>Selected</mat-card-title>
+              </mat-card-header>
+              <img mat-card-image src="/assets/logos/{{_selected | lowercase }}.png" alt="Photo of a Shiba Inu">
+              <mat-card-content>
+              </mat-card-content>
+          </mat-card>
+      </td> 
+      <td>&nbsp;</td>
+    </tr>
+
+  </table>
+
 
 <div class="example-container mat-elevation-z8">
 

@@ -19,7 +19,7 @@
   </div>
 
   <div>  &nbsp; </div>
-  <ngx-fab  (click)="next(stepper);" [backgroundColor]="'#673AB7'" [iconClass]="'fas fa-forward'" ></ngx-fab>
+  <ngx-fab  (click)="next(stepper);" [backgroundColor]="'#673AB7'" [iconClass]="'fas fa-forward'" FabPosition="'bottom-right'"></ngx-fab>
   <mat-card>
 
       <mat-card-header>
@@ -42,11 +42,11 @@
                         <div id="two" *ngIf="con.id=='two'">
                         </div>
                         <div  *ngIf="con.id=='three' && user_response>1" >
-                              <app-table [user_response]="user_response"></app-table>      
+                              <app-table [user_response]="user_response" [platform]="user_platform" (platformEmitter)="setUserPlatform($event)"></app-table>      
                         </div>
                         <div id="four" *ngIf="con.id=='four'">
 
-                          <app-summary></app-summary>
+                          <app-summary [user_platform]="user_platform" [user_config]="user_response"></app-summary>
 
                         </div>
                   </div> 

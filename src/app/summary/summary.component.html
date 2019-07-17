@@ -8,20 +8,20 @@
     <!-- <img mat-card-image src="https://media.licdn.com/dms/image/C4E12AQGFZIga8-5w3A/article-cover_image-shrink_600_2000/0?e=1568246400&v=beta&t=WW-ptnbR4ihatN6uTWCDnz3alDEy1PhNSKTakD5iqsY" alt="Photo of a Shiba Inu"> -->
     <mat-card-content>
 
-
-        <mat-grid-list cols="2" rowHeight="400px">
-            <mat-grid-tile>
+        <mat-grid-list cols="3" rowHeight="400px">
+            <mat-grid-tile [colspan]="2">
                 <mat-list>
-                    <mat-list-item> Platform Name : HypeLedger Fabric </mat-list-item>
-                    <mat-list-item> Configuration : Private Permission-ed </mat-list-item>
-                    <mat-list-item> Organization  : Linux Foundation </mat-list-item>
-                    <mat-list-item> Open Source  : Yes </mat-list-item>
-                    <mat-list-item> Official Community  Forum: https://chat.hyperledger.org/channel/general </mat-list-item>
+                    <mat-list-item> Platform Name :  {{_user_platform["extended_name"]}} </mat-list-item>
+                    <mat-list-item> Configuration :  {{_user_config}} </mat-list-item>
+                    <mat-list-item> Organization  :  {{_user_platform["organization"]}}</mat-list-item>
+                    <mat-list-item> Open Source  :  {{_user_platform["open_source"]}} </mat-list-item>
+                    <mat-list-item> Official Community  Forum : &nbsp; <a href="{{_user_platform['official_community']}}"> {{_user_platform['official_community']}} </a> </mat-list-item>
+                    <mat-list-item> Documentation : &nbsp; <a href="{{_user_platform['developer_documentation']}}"> {{_user_platform['developer_documentation']}} </a> </mat-list-item>
                    </mat-list>
             </mat-grid-tile>
 
             <mat-grid-tile>
-              <img with="50" with="70" src="https://alpineinc.com/wp-content/uploads/2018/06/Hyperledger-2-images.png">
+              <img width="80%"  src="/assets/logos/{{_user_platform['name'] | lowercase }}.png">
               
             </mat-grid-tile>
         </mat-grid-list>

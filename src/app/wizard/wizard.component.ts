@@ -17,8 +17,6 @@ export class WizardComponent implements OnInit {
   @Input() phase: object;
   @Input() name: String;
 
-  
- 
 
   constructor() {
   }
@@ -37,8 +35,6 @@ export class WizardComponent implements OnInit {
       if(this.phase.id == "one" || this.phase.id == "two"){
           this.loadTree(treeData);
       }
-
-      
 
 
   }
