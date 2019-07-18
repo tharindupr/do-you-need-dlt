@@ -19,7 +19,8 @@
   </div>
 
   <div>  &nbsp; </div>
-  <ngx-fab  (click)="next(stepper);" [backgroundColor]="'#673AB7'" [iconClass]="'fas fa-forward'" FabPosition="'bottom-right'"></ngx-fab>
+  <ngx-fab    (click)="next(stepper);" [backgroundColor]="'#673AB7'" [iconClass]="'fas fa-arrow-right'" FabPosition="'bottom-right'"></ngx-fab>
+  <ngx-fab  *ngIf="done==1" [backgroundColor]="'#4CAF50'" [iconClass]="'fas fa-check'" FabPosition="'bottom-right'"></ngx-fab>
   <mat-card>
 
       <mat-card-header>
@@ -29,8 +30,8 @@
 
       <mat-card-content>
 
-          <mat-horizontal-stepper linear #stepper>
-              <mat-step *ngFor="let con of configurations; let i = index" completed="false">
+          <mat-horizontal-stepper linear #stepper (selectionChange)="onStepChanged($event)">
+              <mat-step *ngFor="let con of configurations; let i = index" completed="false" > 
                 <form>
                   <ng-template matStepLabel>{{con.name}}</ng-template>
                   
@@ -41,20 +42,33 @@
                         </div>
                         <div id="two" *ngIf="con.id=='two'">
                         </div>
-                        <div  *ngIf="con.id=='three' && user_response>1" >
+                        <!-- <div  *ngIf="con.id=='three' && user_response>1" >
                               <app-table [user_response]="user_response" [platform]="user_platform" (platformEmitter)="setUserPlatform($event)"></app-table>      
                         </div>
                         <div id="four" *ngIf="con.id=='four'">
 
                           <app-summary [user_platform]="user_platform" [user_config]="user_response"></app-summary>
 
-                        </div>
+                        </div> -->
                   </div> 
 
                   <div>
                     <button mat-button *ngIf="this.isButtonVisible" (click)="loadMyWizard();" >Launch Wizard</button>
                   </div>
                 </form>
+              </mat-step >
+
+
+              <mat-step  completed="false">
+                  <ng-template matStepLabel>Type of DLT ?</ng-template>
+                  <div  *ngIf="user_response>1" >
+                      <app-table [user_response]="user_response" [platform]="user_platform" (platformEmitter)="setUserPlatform($event)"></app-table>      
+                  </div>
+              </mat-step>
+
+              <mat-step  completed="false" state="last">
+                  <ng-template matStepLabel>Summary {{state}}</ng-template>
+                  <app-summary [user_platform]="user_platform" [user_config]="user_response"></app-summary>
               </mat-step>
 
           </mat-horizontal-stepper>

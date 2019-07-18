@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {WizardComponent} from './wizard/wizard.component';
 import { MatStepper } from '@angular/material/stepper';
 import * as d3 from 'd3';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { state } from '@angular/animations';
 
 
 @Component({
@@ -19,14 +21,16 @@ export class AppComponent implements OnInit{
   config2 = json2;
   configurations = [
     {"name" : "Will DLT suites you ?", "config" : json1, "id":"one" }, 
-    {"name" : "DLT configuration ?", "config" : json2, "id":"two" }, 
-    {"name" : "Type of DLT ?", "config" : json2, "id":"three" }, 
-    {"name" : "Summary", "config" : json2, "id":"four" }];
+    {"name" : "DLT configuration ?", "config" : json2, "id":"two" }];
+
+    // {"name" : "Type of DLT ?", "config" : json2, "id":"three" }, 
+    // {"name" : "Summary", "config" : json2, "id":"four" }
 
   user_response = 0;
   private loadWizard = false;
   loadNext = 0;
   user_platform = "";
+  done = 0;
 
   //mandotray for catching the component state
   setLoadNext(event){
@@ -71,16 +75,28 @@ export class AppComponent implements OnInit{
     
   }
 
+  public onStepChanged(event: any): void {
+    console.log(event.selectedIndex);
+    if(event.selectedIndex==3){
+        console.log("Last");
+        this.done =1;
+    }
+    else{
+        this.done = 0;
+    }
+  }
+
 
   next(stepper: MatStepper){
-    if(this.loadNext != 0){
+    if(this.loadNext != 0 || this.user_platform !=""){
       this.user_response = this.loadNext;
       stepper.selected.completed = true;
       stepper.next();
+      this.loadNext = 0;
     }
     else{
-      stepper.selected.completed = true;
-      stepper.next();
+    //   stepper.selected.completed = true;
+    //   stepper.next();
       //comment above
     }
   }

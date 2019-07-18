@@ -15,9 +15,11 @@
                     <mat-list-item> Configuration :  {{_user_config}} </mat-list-item>
                     <mat-list-item> Organization  :  {{_user_platform["organization"]}}</mat-list-item>
                     <mat-list-item> Open Source  :  {{_user_platform["open_source"]}} </mat-list-item>
-                    <mat-list-item> Official Community  Forum : &nbsp; <a href="{{_user_platform['official_community']}}"> {{_user_platform['official_community']}} </a> </mat-list-item>
-                    <mat-list-item> Documentation : &nbsp; <a href="{{_user_platform['developer_documentation']}}"> {{_user_platform['developer_documentation']}} </a> </mat-list-item>
-                   </mat-list>
+                    <mat-list-item> Community  Forum : &nbsp; <a href="{{_user_platform['official_community']}}" target="_blank"> {{_user_platform['official_community']}} </a> </mat-list-item>
+                    <mat-list-item> Documentation : &nbsp; <a href="{{_user_platform['developer_documentation']}}" target="_blank"> {{_user_platform['developer_documentation']}} </a> </mat-list-item>
+                    <mat-list-item> 
+                    </mat-list-item>
+                  </mat-list>
             </mat-grid-tile>
 
             <mat-grid-tile>
@@ -25,6 +27,22 @@
               
             </mat-grid-tile>
         </mat-grid-list>
+
+          <mat-accordion *ngIf="_selected_consensus">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Consensus Algorithm
+                </mat-panel-title>
+                <mat-panel-description >
+                  {{_selected_consensus["name"]}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-list>
+                  <mat-list-item *ngFor="let item of _selected_consensus['details']"> {{item}} </mat-list-item>
+              </mat-list>
+            </mat-expansion-panel>
+          </mat-accordion>
         
          
     </mat-card-content>
