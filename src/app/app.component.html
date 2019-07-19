@@ -61,6 +61,7 @@
 
               <mat-step  completed="false">
                   <ng-template matStepLabel>Type of DLT ?</ng-template>
+                  <h3>Choose a platform by clicking on a higlighted node.</h3>
                   <div  *ngIf="user_response>1" >
                       <app-table [user_response]="user_response" [platform]="user_platform" (platformEmitter)="setUserPlatform($event)"></app-table>      
                   </div>

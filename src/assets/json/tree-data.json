@@ -1,0 +1,98 @@
+ {  
+      "name":"Data Structure",
+      "children":[  
+         {  
+            "name":"Blockchain",
+            "children":[  
+               {  
+                  "name":"PoW",
+                  "children":[  
+                     {  
+                        "name":"BitCoin",
+                        "type":[2],
+                        "index": 0
+                     },
+                     {  
+                        "name":"Ethereum",
+                        "type":[2],
+                        "index": 1
+                     }
+                  ]
+               },
+               {  
+                  "name":"BFT",
+                  "children":[  
+                     {  
+                        "name":"LibraBFT",
+                        "type":[3,4],
+                        "index": -1
+                     },
+                     {  
+                        "name":"PBFT",
+                        "children":[  
+                           {  
+                              "name":"Fabric",
+                              "type":[3,4],
+                              "index": 4
+                           },
+                           {  
+                              "name":"Zilliqa",
+                              "index": -1
+                           }
+                        ]
+                     },
+                     {  
+                        "name":"CordaBFT",
+                        "type":[3,4],
+                        "index": 5
+                     }
+                  ]
+               },
+               {  
+                  "name":"PoS",
+                  "children":[  
+                     {  
+                        "name":"Casper",
+                        "type":[2],
+                        "index": 2
+
+                     }
+                  ]
+               },
+               {  
+                  "name":"PoEt",
+                  "children":[  
+                     {  
+                        "name":"Sawtooth",
+                        "type":[2, 3],
+                        "index": 3
+                     }
+                  ]
+               }
+            ]
+         },
+         {  
+            "name":"Directed Acyclic Graph",
+            "children":[  
+               {  
+                  "name":"HashGraph",
+                  "index": -1
+               },
+               {  
+                  "name":"Distributed PoW",
+                  "children":[  
+                     {  
+                        "name":"IOTA",
+                        "type":[2],
+                        "index": 6
+                     }
+                  ]
+               },
+               {  
+                  "name":"MainChain",
+                  "index": -1
+               }
+            ]
+         }
+      ]
+   }

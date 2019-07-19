@@ -88,11 +88,15 @@ export class AppComponent implements OnInit{
 
 
   next(stepper: MatStepper){
-    if(this.loadNext != 0 || this.user_platform !=""){
+    if(this.loadNext != 0){
       this.user_response = this.loadNext;
       stepper.selected.completed = true;
       stepper.next();
       this.loadNext = 0;
+    }
+    else if(this.user_platform !=""){
+      stepper.selected.completed = true;
+      stepper.next();
     }
     else{
     //   stepper.selected.completed = true;

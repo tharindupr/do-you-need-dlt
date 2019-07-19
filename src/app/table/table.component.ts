@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { platform } from 'os';
 import * as d3 from 'd3';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-table',
@@ -14,6 +15,25 @@ export class TableComponent {
 
    private _user_response: number;
    _selected:string;   
+   _platform_json_url = 'assets/json/platforms.json';
+   _tee_data_url = 'assets/json/tree-data.json';
+   platformArray ="";
+   treeData="";
+
+   public getJSON(url): Observable<any> {
+      return this.http.get(url);
+    }
+  
+    constructor(private http: HttpClient) {
+         this.getJSON(this._platform_json_url).subscribe(data => {
+           this.platformArray = data;
+         });
+         this.getJSON(this._tee_data_url).subscribe(data => {
+            this.treeData = data;
+         });
+ 
+    }
+  
 
    @Output() platformEmitter = new EventEmitter<string>();
 
@@ -21,7 +41,15 @@ export class TableComponent {
    set user_response(value) {
       this._user_response = value;
       d3.select("#three").select("svg").remove();
-      this.loadMindMap(this._user_response);
+      //console.log(this.platformArray);
+      this.getJSON(this._platform_json_url).subscribe(data => {
+         this.platformArray = data;
+         this.getJSON(this._tee_data_url).subscribe(data => {
+            this.treeData = data;
+         });
+         this.loadMindMap(this._user_response, this.platformArray, this.treeData);
+      });
+      
    }
 
 
@@ -34,7 +62,7 @@ export class TableComponent {
    }
 
 
-   platformArray = platforms;
+  
 
    ngInit(){
       this.platformEmitter.emit('');
@@ -60,107 +88,8 @@ export class TableComponent {
       return false;
    }
 
-   loadMindMap(user_response){
-      
-      var treeData =
-      {  
-      "name":"Data Structure",
-      "children":[  
-         {  
-            "name":"Blockchain",
-            "children":[  
-               {  
-                  "name":"PoW",
-                  "children":[  
-                     {  
-                        "name":"BitCoin",
-                        "type":[2],
-                        "index": 0,
-                     },
-                     {  
-                        "name":"Ethereum",
-                        "type":[2],
-                        "index": 1,
-                     }
-                  ]
-               },
-               {  
-                  "name":"BFT",
-                  "children":[  
-                     {  
-                        "name":"LibraBFT",
-                        "type":[3,4],
-                        "index": -1,
-                     },
-                     {  
-                        "name":"PBFT",
-                        "children":[  
-                           {  
-                              "name":"Fabric",
-                              "type":[3,4],
-                              "index": 4,
-                           },
-                           {  
-                              "name":"Zilliqa",
-                              "index": -1,
-                           }
-                        ]
-                     },
-                     {  
-                        "name":"CordaBFT",
-                        "type":[3,4],
-                        "index": 5,
-                     }
-                  ]
-               },
-               {  
-                  "name":"PoS",
-                  "children":[  
-                     {  
-                        "name":"Casper",
-                        "type":[2],
-                        "index": 2,
+   loadMindMap(user_response, platforms, treeData){
 
-                     }
-                  ]
-               },
-               {  
-                  "name":"PoEt",
-                  "children":[  
-                     {  
-                        "name":"Sawtooth",
-                        "type":[2, 3],
-                        "index": 3,
-                     }
-                  ]
-               }
-            ]
-         },
-         {  
-            "name":"Directed Acyclic Graph",
-            "children":[  
-               {  
-                  "name":"HashGraph",
-                  "index": -1,
-               },
-               {  
-                  "name":"Distributed PoW",
-                  "children":[  
-                     {  
-                        "name":"IOTA",
-                        "type":[2],
-                        "index": 6,
-                     }
-                  ]
-               },
-               {  
-                  "name":"MainChain",
-                  "index": -1,
-               }
-            ]
-         }
-      ]
-   };
    
    // Set the dimensions and margins of the diagram
    var margin = {top: 20, right: 90, bottom: 30, left: 90},
@@ -286,10 +215,20 @@ export class TableComponent {
       // Update the node attributes and style
       nodeUpdate.select('circle.node')
       .attr('r', 10)
-      .style("fill", function(d) {
+      .style("fill", function(d : any) {
+         if(d.data.type){
+            console.log("play");
+            return d.data.type.includes(user_response) ? "#81D4FA" : "#fff";
+            
+         }  
+         else
             return d._children ? "#81D4FA" : "#fff";
       })
-      .attr('cursor', 'pointer');
+      .attr('cursor', function(d :any){
+         if(d.data.type){
+            return d.data.type.includes(user_response) ? "pointer" : "";
+         }  
+      });
    
    
       // Remove any exiting nodes
@@ -360,11 +299,11 @@ export class TableComponent {
       // Toggle children on click.
       function click(d) {
          if(d.data.type && d.data.type.includes(user_response)){
+               console.log("from tablle");
+               console.log(platforms);
                emitter.emit(platforms[d.data.index]);
-               console.log(d);
          }
          if (d.children) {
-
                d._children = d.children;
                d.children = null;
             } else {
@@ -379,220 +318,3 @@ export class TableComponent {
 }
 
 
-var platforms =[  
-   {  
-      "name":"Bitcoin",
-      "permissioned":"No",
-      "permissionless":"Yes",
-      "public":"Yes",
-      "private":"No",
-      "consensus":"PoW",
-      "data_structure":"Blockchain",
-      "smart_contract":"Go, C++",
-      "token":"Bitcoin",
-      "tps":"7",
-      "quantum":"No",
-      "turing":"No",
-     "open_source": "Yes",
-     "extended_name": "Bitcoin",
-     "organization": "None",
-     "official_community": "https://bitcointalk.org/",
-     "developer_documentation":"https://bitcoin.org/en/developer-documentation",
-      "specific":{  
-         "pros":[  
-            "Use UTXO data model for representing transactions and therefore it has better privacy.",
-            "More robust transaction history due to the simplicity of the output-based history."
-         ],
-         "cons":[  
-            "It can be harder to work with complex smart contract."
-         ]
-      }
-   },
-   {  
-      "name":"Ethereum",
-      "permissioned":"No",
-      "permissionless":"Yes",
-      "public":"Yes",
-      "private":"No",
-      "consensus":"PoW",
-      "data_structure":"Blockchain",
-      "smart_contract":"Solidity",
-      "token":"ETH",
-      "tps":"200",
-      "quantum":"No",
-      "turing":"No",
-     "open_source": "Yes",
-     "extended_name": "Ethereum",
-     "organization": "Ethereum Foundation",
-     "official_community": "https://forum.ethereum.org/",
-     "developer_documentation":"http://www.ethdocs.org/en/latest/",
-      "specific":{  
-         "pros":[  
-      "Has 30 times more developer than the next blockchain community. (by end 2018).",
-      "Ethereum has a total of 15,791 nodes whereas Bitcoin has 9,678 nodes and Ripple has only 809 nodes. (by end 2018) Which means more decentralized network.",
-      "Proven reliability : Already running thousands of decentralized applications."
- 
-         ],
-         "cons":[  
-      "PoW mechanism for validating transactions has made the network slower and open to congestion.",
-      "Cryptocurrencies are super-volatile and are affected profoundly by market rumours. A recent hoax about the death of Vitalik led to a $4 billion selloff."
- 
-         ]
-      }
-   },
-   {  
-      "name":"Casper",
-      "permissioned":"No",
-      "permissionless":"Yes",
-      "public":"Yes",
-      "private":"No",
-      "consensus":"PoS",
-      "data_structure":"Blockchain",
-      "smart_contract":"Solidity",
-      "token":"ETH",
-      "tps":"NA",
-      "quantum":"No",
-      "turing":"No",
-     "open_source": "Yes",
-     "extended_name": "Casper Ethereum",
-     "organization": "Ethereum Foundation",
-     "official_community": "NA",
-     "developer_documentation":"NA",
-      "specific":{  
-         "pros":[  
-      "Transaction throughput is higher than PoW Ethereum.",
-      "Mining energy consumption is lesser than PoW Ethereum."
- 
-         ],
-         "cons":[  
-      "Mining algorithm favors the people having a large number of ETH tokens."
-         ]
-      }
-   },
-   {  
-      "name":"Sawtooth",
-      "permissioned":"Yes",
-      "permissionless":"Yes",
-      "public":"Yes",
-      "private":"Yes",
-      "consensus":"PoET",
-      "data_structure":"Blockchain",
-      "smart_contract":"Python",
-      "token":"NA",
-      "tps":"70",
-      "quantum":"No",
-      "turing":"Yes",
-     "open_source": "Yes",
-     "extended_name": "Hyperledger Sawtooth",
-     "organization": "Linux Foundation",
-     "official_community": "https://lists.hyperledger.org/g/sawtooth",
-     "developer_documentation":"https://sawtooth.hyperledger.org/docs/",
-      "specific":{  
-         "pros":[  
-            "Support for permissioned and permissionless implementations.",
-            "Support for event creation and broadcasting.",
-            "Scalability is higher than Fabric.",
-            "Easier to extend the node count over a period of time with help of peering mechanism.",
-            "Can extract the ledger data and then write it to any database for analytics and better read speed.",
-            "More simpler network architecture, No complex systems like orderer."
-         ],
-         "cons":[  
-            "Not perfoming very well with small number of nodes."
-         ]
-      }
-   },
-   {  
-      "name":"Fabric",
-      "permissioned":"Yes",
-      "permissionless":"No",
-      "public":"Yes",
-      "private":"Yes",
-      "consensus":"PBFT",
-      "data_structure":"Blockchain",
-      "smart_contract":"Go, Java",
-      "token":"NA",
-      "tps":"3500",
-      "quantum":"No",
-      "turing":"Yes",
-     "open_source": "Yes",
-     "extended_name": "Hyperledger Fabric",
-     "organization": "Linux Foundation",
-     "official_community": "https://lists.hyperledger.org/g/fabric",
-     "developer_documentation":"https://hyperledger-fabric.readthedocs.io/en/release-1.4/",
-      "specific":{  
-         "pros":[ 
-      "Available as a managed service on AWS.",
-      "A permission-ed version of PBFT is used and therefore it's effective for providing high throughput transactions for small networks.",
-      "Extendable and modular architecture."
- 
-         ],
-         "cons":[  
-      "Cant provide same decentralization as Sawtooth. "
-         ]
-      }
-   },
-   {  
-      "name":"Corda",
-      "permissioned":"Yes",
-      "permissionless":"No",
-      "public":"Yes",
-      "private":"Yes",
-      "consensus":"PBFT",
-      "data_structure":"Blockchain",
-      "smart_contract":"Kotlin, Java",
-      "token":"NA",
-      "tps":"1678",
-      "quantum":"No",
-      "turing":"No",
-      "open_source": "Yes",
-     "extended_name": "Hyperledger Fabric",
-     "organization": "R3",
-     "official_community": "https://www.corda.net/community/",
-     "developer_documentation":"https://docs.corda.net",
-      "specific":{  
-         "pros":[ 
-       "Orcales provide transaction services offchain.",
-       "Each node has only a partial copy of the database and there is no global blockchain.",
-       "Legal footing: Deals recorded by the ledger are by contract accepted as admissible evidence and legally binding bu all parties in any dispute. ",
-       "Assured identity: Parties will have assurance over the identity of participants in the network. (By core identity framework)",
-       "Different versions of Corda will be able to coexist on the same network and applications will continue to run on later versions."
- 
-         ],
-         "cons":[  
-      "Do not have the necessary means and the technological characteristics to build an ecosystem based on economic incentives."
-         ]
-      }
-   },
-    {  
-      "name":"IOTA",
-      "permissioned":"No",
-      "permissionless":"Yes",
-      "public":"Yes",
-      "private":"No",
-      "consensus":"DPoW",
-      "data_structure":"DAG",
-      "smart_contract":"Java",
-      "token": "IOTA",
-      "tps":"1500",
-      "quantum":"Yes",
-      "turing":"No",
-     "open_source": "Yes",
-      "extended_name": "IOTA",
-     "organization": "IOTA foundation",
-     "official_community": "https://www.iota.org/contact-us/community-support",
-     "developer_documentation":"https://docs.iota.org/",
-      "specific":{  
-         "pros":[ 
-       "Scalability: IOTA can achieve high transaction throughput thanks to parallelized validation of transactions with no limit as to the number of transactions that can be confirmed in a certain interval. Rate of the transaction is proportional to the number of transaction nodes. ",
-       "No Transaction Fees: IOTA has no transaction fees.",
-       "Decentralization: IOTA has no miners. Every participant in the network that is making a transaction actively participates in the consensus. ",
-       "Quantum-immunity: IOTA utilized a newly designed trinary hash function called Curl, which is quantum immune (Winternitz signatures).",
-       "Different versions of Corda will be able to coexist on the same network and applications will continue to run on later versions."
- 
-         ],
-         "cons":[  
-      "Parallel transaction validation becomes infeasible when the network grows."
-         ]
-      }
-   }
- ];
