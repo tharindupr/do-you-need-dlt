@@ -6,7 +6,6 @@ import {ResultComponent} from '../result/result.component';
 import { loadLContextFromNode } from '@angular/core/src/render3/discovery_utils';
 
 
-
 @Component({
   selector: 'app-wizard',
   templateUrl: './wizard.component.html',
