@@ -64,11 +64,11 @@ export class TableComponent {
    ngInit(){
       this.platformEmitter.emit('');
       this._selected = "None";
+      console.log("working");
    }
 
 
    ngAfterContentInit() {
-
    }
 
 
