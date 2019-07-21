@@ -61,8 +61,6 @@ export class TableComponent {
    }
 
 
-  
-
    ngInit(){
       this.platformEmitter.emit('');
       this._selected = "None";
@@ -315,5 +313,3 @@ export class TableComponent {
 
    }
 }
-
-
