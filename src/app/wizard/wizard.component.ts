@@ -16,15 +16,10 @@ export class WizardComponent implements OnInit {
 
   @Input() phase: object;
   @Input() name: String;
-
-
   constructor() {
   }
-
-
   @Output() nextEmiter: EventEmitter<number> = new EventEmitter<number>();
- 
-
+   
   ngOnInit() {
      this.nextEmiter.emit(0);
   }
