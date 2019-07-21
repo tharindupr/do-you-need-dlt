@@ -146,7 +146,6 @@ export class WizardComponent implements OnInit {
             .style("fill", function(d : any) {
                 return d._children ? "#B39DDB" : d.data.type === "end" ? "#00C853" : "#fff";
             });
-
         // Add labels for the nodes
         nodeEnter.append('svg:text')
             .attr("text-anchor", "middle")

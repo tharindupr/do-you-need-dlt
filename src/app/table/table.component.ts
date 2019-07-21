@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, of } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { platform } from 'os';
 import * as d3 from 'd3';
 import { HttpClient } from '@angular/common/http';
 
@@ -164,7 +163,7 @@ export class TableComponent {
    
       // Update the nodes...
       var node = svg.selectAll('g.node')
-         .data(nodes, function(d) {return d.id || (d.id = ++i); });
+         .data(nodes, function(d : any) {return d.id || (d.id = ++i); });
    
       // Enter any new modes at the parent's previous position.
       var nodeEnter = node.enter().append('g')
@@ -186,7 +185,7 @@ export class TableComponent {
             else
                return "#81D4FA"
          })
-         .style("fill", function(d) {
+         .style("fill", function(d :any) {
             return d._children ? "#512DA8" : "#fff";
          });
    
@@ -194,13 +193,13 @@ export class TableComponent {
       // Add labels for the nodes
       nodeEnter.append('text')
          .attr("dy", ".35em")
-         .attr("x", function(d) {
+         .attr("x", function(d : any) {
             return d.children || d._children ? -13 : 13;
          })
-         .attr("text-anchor", function(d) {
+         .attr("text-anchor", function(d : any){
             return d.children || d._children ? "end" : "start";
          })
-         .text(function(d) { return d.data.name; });
+         .text(function(d : any) { return d.data.name; });
    
       // UPDATE
       var nodeUpdate = nodeEnter.merge(node);
@@ -251,7 +250,7 @@ export class TableComponent {
    
       // Update the links...
       var link = svg.selectAll('path.link')
-         .data(links, function(d) { return d.id; });
+         .data(links, function(d : any) { return d.id; });
    
       // Enter any new links at the parent's previous position.
       var linkEnter = link.enter().insert('path', "g")
@@ -279,7 +278,7 @@ export class TableComponent {
          .remove();
    
       // Store the old positions for transition.
-      nodes.forEach(function(d){
+      nodes.forEach(function(d : any){
       d.x0 = d.x;
       d.y0 = d.y;
       });
