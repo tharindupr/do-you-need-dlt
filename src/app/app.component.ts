@@ -86,7 +86,6 @@ export class AppComponent implements OnInit{
     }
   }
 
-
   next(stepper: MatStepper){
     if(this.loadNext != 0){
       this.user_response = this.loadNext;
