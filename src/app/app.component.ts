@@ -6,7 +6,6 @@ import * as d3 from 'd3';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { state } from '@angular/animations';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
