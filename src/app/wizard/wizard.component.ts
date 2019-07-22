@@ -155,7 +155,6 @@ export class WizardComponent implements OnInit {
 
         // UPDATE
         var nodeUpdate = nodeEnter.merge(node);
-
         // Transition to the proper position for the node
         nodeUpdate.transition()
           .duration(duration)

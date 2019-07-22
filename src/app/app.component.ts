@@ -157,7 +157,13 @@ var core = {
                 },
                 {
                     "label":"No",
-                    "type":"leaf"
+                    "type":"split",
+                    "children":[
+                            {
+                                "label":"DLT might not be a solution",
+                                "type":"leaf"
+                            }
+                    ]
                 }
                 
     ]
@@ -251,8 +257,14 @@ var json1 =
        },
        {
         "label":"No",
-        "type":"leaf"
-       }
+        "type":"split",
+        "children":[
+                {
+                    "label":"DLT might not be a solution",
+                    "type":"leaf"
+                }
+            ]
+        }
     ]
 };
 
