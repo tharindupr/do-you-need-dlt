@@ -169,7 +169,6 @@ export class WizardComponent implements OnInit {
           })
           .attr('cursor', 'pointer');
 
-
         // Remove any exiting nodes
         var nodeExit = node.exit().transition()
             .duration(duration)
