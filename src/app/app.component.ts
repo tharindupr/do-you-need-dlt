@@ -13,7 +13,6 @@ import { state } from '@angular/animations';
 })
 
 
-
 export class AppComponent implements OnInit{
   private isButtonVisible = true;
   config1 = json1;
