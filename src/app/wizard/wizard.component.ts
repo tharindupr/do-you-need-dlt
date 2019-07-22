@@ -158,7 +158,7 @@ export class WizardComponent implements OnInit {
         // Transition to the proper position for the node
         nodeUpdate.transition()
           .duration(duration)
-          .attr("transform", function(d) { 
+          .attr("transform", function(d : any) { 
               return "translate(" + (d.x)  + "," + d.y+ ")";
           });
 
