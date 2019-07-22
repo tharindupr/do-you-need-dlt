@@ -178,6 +178,7 @@ export class WizardComponent implements OnInit {
             })
             .remove();
 
+          
         // On exit reduce the node circles size to 0
         nodeExit.select('circle')
           .attr('r', 1e-6);
