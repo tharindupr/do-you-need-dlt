@@ -17,7 +17,6 @@ import { SummaryComponent } from './summary/summary.component';
 
 import { NgxFabModule } from 'ngx-fab';
 
-
 @NgModule({
   declarations: [
     AppComponent,
