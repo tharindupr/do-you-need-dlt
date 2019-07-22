@@ -104,8 +104,6 @@ export class AppComponent implements OnInit{
       //comment above
     }
   }
-  
-  
 }
 
 var core = {
