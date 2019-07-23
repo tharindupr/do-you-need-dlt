@@ -117,7 +117,13 @@ var core = {
                             "children":[
                                 {
                                     "label":"Yes",
-                                    "type":"leaf"
+                                    "type":"split",
+                                    "children":[
+                                            {
+                                                "label":"DLT might not be a solution",
+                                                "type":"leaf"
+                                            }
+                                    ]
                                 },
                                 {
                                     "label":"No",
@@ -129,7 +135,13 @@ var core = {
                                             "children":[
                                                 {
                                                     "label":"Yes",
-                                                    "type":"leaf"
+                                                    "type":"split",
+                                                    "children":[
+                                                            {
+                                                                "label":"DLT might not be a solution",
+                                                                "type":"leaf"
+                                                            }
+                                                    ]
                                                 },
                                                 {
                                                     "label":"No",
