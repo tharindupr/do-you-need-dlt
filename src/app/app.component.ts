@@ -105,6 +105,7 @@ export class AppComponent implements OnInit{
 
 var core = {
     "label":"Are multiple parties involved in writing data?",
+    "info":"Are there more than one parties who are producing data that needed to be stored, traceback, or audited",
     "type":"split",
     "children":[
                 {
@@ -113,6 +114,7 @@ var core = {
                     "children":[
                         {
                             "label":"Do you need to change/delete the original data once written ? ",
+                            "info":"Due to the immutability, it is not possible to delete or change the original data. But it is possible to append the changes or invalidate.",
                             "type":"split",
                             "children":[
                                 {
@@ -179,6 +181,7 @@ var core = {
 var json1 =
 {
     "label":"Do you need a shared data storage ? ",
+    "info":"Do they need to share data in order to coordinate with the entities (could be people, companies, devices or software)  participating in the business scenario?",
     "type":"split",
     "children":[
        {
@@ -187,6 +190,7 @@ var json1 =
           "children":[
              {
                 "label":"Do you want a tamper proof log of all actions happening in the data store ? ",
+                "info" : "Need for maintaining an immutable log of actions performed on data stored.",
                 "type":"split",
                 "children":[
                     {
@@ -201,6 +205,7 @@ var json1 =
                         "children":[
                           {
                               "label":"Do you  manage contractual agreements on data? ",
+                              "info" : "Are there mutual predefined policies and guidelines, enforceable by law, between two or more parties that needed to be followed on performing actions on data?",
                               "type":"split",
                               "children":[
                                           {
@@ -214,6 +219,7 @@ var json1 =
                                               "children":[
                                                   {
                                                       "label":"Do you need strong audit trails across organizations ?",
+                                                      "info" : "Do the actions performed needed to be traced back to the actor and all the other relevant information.",
                                                       "type":"split",
                                                       "children":[
                                                           {
@@ -227,6 +233,7 @@ var json1 =
                                                               "children":[
                                                                   {
                                                                     "label":"Do you need visibility of the transactions across all parties? ",
+                                                                    "info":"Every action performed on the data needed to be transparent across all the readers and writers.",
                                                                     "type":"split",
                                                                     "children":[
                                                                       {

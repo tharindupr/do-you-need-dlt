@@ -49,6 +49,25 @@ export class WizardComponent implements OnInit {
       else if (this.phase.id == "two")
         svgheight =  500;
 
+      // Define the div for the tooltip
+      var div = d3.select("#"+this.phase.id).append("div")	
+                .attr("class", "tooltip")	
+                .style("position", "absolute")
+                .style("text-align", "center")
+                .style("top", "0")
+                .style("width", "250px")
+                .style("height", "60px")
+                .style("padding", "2px")
+                .style("font", "12px sans-serif")
+                .style("border", "0px")
+                .style("border-radius", "8px")
+                .style("pointer-event", "none")
+                .style("background", "grey")		
+                .style("line-height", "20px")		
+                .style("color", "white")	
+                .style("opacity", 0);		
+
+
       var svg = d3.select("#"+this.phase.id)
           .append("svg")
           .attr("width", width + margin.right + margin.left)
@@ -114,8 +133,6 @@ export class WizardComponent implements OnInit {
         nodeEnter.append('svg:rect')
             .attr('class', 'node')
             .attr('height', '20')
-            .attr('rx', '10')
-            .attr('ry', '10')
             .attr("x", function(d : any) {
               var label = d.data.label;
               var text_len = label.length * 6;
@@ -150,6 +167,21 @@ export class WizardComponent implements OnInit {
               else 
                   return "2%";
             })
+            .on("mouseover", function(d) {		
+                if(d.data.info){
+                  console.log(d.y);
+                    div.transition()		
+                        .duration(200)		
+                        .style("opacity", .9);		
+                    div	.html(d.data.info)
+                        .style("left", "66%")		
+                        .style("top", (d.y+50)+"px");	 
+                }
+              })					
+            .on("mouseout", function(d) {		
+              div.transition()		
+                  .duration(500)		
+                  .style("opacity", 0);})
             .style("font-size", "14px")
             .text(function(d : any) { return d.data.label; });
 
@@ -176,11 +208,6 @@ export class WizardComponent implements OnInit {
                 return "translate(" + source.x + "," + source.y + ")";
             })
             .remove();
-
-          
-        // On exit reduce the node circles size to 0
-        nodeExit.select('circle')
-          .attr('r', 1e-6);
 
         // On exit reduce the opacity of text labels
         nodeExit.select('text')
@@ -237,7 +264,7 @@ export class WizardComponent implements OnInit {
           if (d.children) {
               if(d.parent.children.length > 1){
                 d.parent.children.forEach(myFunction);
-                function myFunction(item, index){ 
+                function myFunction(item){ 
                   if(d.data.label != item.data.label){
                     item._children = item.temp;
                   }        
@@ -250,7 +277,7 @@ export class WizardComponent implements OnInit {
               if(d.parent.children.length > 1){
                 
                 d.parent.children.forEach(myFunction);
-                function myFunction(item, index){ 
+                function myFunction(item){ 
                     if(d.data.label != item.data.label){
                             item["temp"] = item._children;
                             item._children = null;
