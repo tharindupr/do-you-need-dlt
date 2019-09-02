@@ -46,6 +46,8 @@ export class AppComponent implements OnInit{
   }
 
   ngAfterContentInit() {
+
+    //this.loadMyWizard();
   }
 
   firstFormGroup: FormGroup;
@@ -123,7 +125,8 @@ var core = {
                                     "children":[
                                             {
                                                 "label":"DLT might not be a solution",
-                                                "type":"leaf"
+                                                "type":"leaf",
+                                                "info":"Click on your decision again to go back"
                                             }
                                     ]
                                 },
@@ -141,7 +144,8 @@ var core = {
                                                     "children":[
                                                             {
                                                                 "label":"DLT might not be a solution",
-                                                                "type":"leaf"
+                                                                "type":"leaf",
+                                                                "info":"Click on your decision again to go back"
                                                             }
                                                     ]
                                                 },
@@ -152,6 +156,7 @@ var core = {
                                                         {
                                                             "label":"There's a potential use case for DLT",
                                                             "type":"end",
+                                                            "info":"Click on the arrow button to proceed",
                                                             "output" : 1
                                                         }
                                                     ]
@@ -170,7 +175,8 @@ var core = {
                     "children":[
                             {
                                 "label":"DLT might not be a solution",
-                                "type":"leaf"
+                                "type":"leaf",
+                                "info":"Click on your decision again to go back"
                             }
                     ]
                 }
@@ -247,7 +253,8 @@ var json1 =
                                                                           "children":[
                                                                               {
                                                                                   "label":"DLT might not be a solution",
-                                                                                  "type":"leaf"
+                                                                                  "type":"leaf",
+                                                                                  "info":"Click on your decision again to go back"
                                                                               }
                                                                           ]
                                                                       }
@@ -275,7 +282,8 @@ var json1 =
         "children":[
                 {
                     "label":"DLT might not be a solution",
-                    "type":"leaf"
+                    "type":"leaf",
+                    "info":"Click on your decision again to go back"
                 }
             ]
         }
@@ -287,6 +295,7 @@ var json2 =
  {
     "label": "Do you need public verifialbility?", 
     "type" : "split",
+    "info" : "The choice between the public and private version of the DLT depends on whether we need public verifiability or public read access.",
     "children":[
         {
             "label": "Yes", 
@@ -303,7 +312,8 @@ var json2 =
                                 {
                                     "label": "Use a Public Permission-less DLT", 
                                     "type" : "end",
-                                    "output" : 2   
+                                    "output" : 2,
+                                    "info":"Click on the arrow button to proceed",
                                 }
                             ]    
                         },
@@ -314,7 +324,8 @@ var json2 =
                                 {
                                     "label": "Use a Public Permissioned DLT", 
                                     "type" : "end",
-                                    "output" : 3   
+                                    "output" : 3,
+                                    "info":"Click on the arrow button to proceed",   
                                 }
                             ]    
                         }
@@ -329,7 +340,8 @@ var json2 =
               {
                   "label": "Use a Private Permissioned DLT", 
                   "type" : "end",
-                  "output" : 4   
+                  "output" : 4,
+                  "info":"Click on the arrow button to proceed",   
               }
           ]    
         }

@@ -213,5 +213,66 @@
       "Parallel transaction validation becomes infeasible when the network grows."
          ]
       }
+   },
+   {  
+      "name":"Libra",
+      "permissioned":"Yes",
+      "permissionless":"No",
+      "public":"Yes",
+      "private":"No",
+      "consensus":"LibraBFT",
+      "data_structure":"Blockchain",
+      "smart_contract":"Move",
+      "token": "Libra",
+      "tps":"1000",
+      "quantum":"No",
+      "turing":"Yes",
+      "open_source": "Yes",
+      "extended_name": "Libra",
+      "organization": "Facebook",
+      "official_community": "https://community.libra.org/",
+      "developer_documentation":"https://developers.libra.org/docs/welcome-to-libra",
+      "specific":{  
+      "pros":[ 
+                  "A pacemaker that emits explicit timeouts, and validators rely on a quorum of those to move to the next round—this should improve liveness.",
+                  "Unpredictable leader election mechanism to limit DoS attacks against the leader.",
+                  "Aggregate signatures preserve the identity validators who sign quorum certificates to vote for block acceptance.",
+                  "Due to the nature of its blockchain data structure complex smart contracts logics can be implemented."
+
+         ],
+         "cons":[  
+                  "Inherits all the disadvantages of permissioned blockchains"
+         ]
+      }
+   },
+   {  
+      "name":"Obyte",
+      "permissioned":"No",
+      "permissionless":"Yes",
+      "public":"Yes",
+      "private":"No",
+      "consensus":"Main Chain",
+      "data_structure":"DAG",
+      "smart_contract":"Node.js",
+      "token": "Obyte",
+      "tps":"7000",
+      "quantum":"No",
+      "turing":"No",
+     "open_source": "Yes",
+      "extended_name": "Obyte (Byteball)",
+     "organization": "Obyte foundation",
+     "official_community": "https://obyte.org/#community",
+     "developer_documentation":"https://developer.obyte.org/",
+      "specific":{  
+         "pros":[ 
+            "The consensus algorithm used to protect from double-spends is based on establishing a total order within the DAG. This is achieved by selecting a chain, called main chain, which gravitates towards units issued by commonly recognized reputable users.",
+            "Atomic Exchange-- This gets rid of the requirement to rely on a central exchange. Rather, purchases in between customers occur concurrently or do not happen whatsoever.",
+            "Controlled Properties-- Establishments can conveniently provide possessions that adhere to Know Your Client as well as Anti-Money Laundering plans.",
+            "Multisignature Capacity-- For added safety and security, individuals can call for authorization trademarks from numerous tools prior to a purchase handling. Furthermore, multisignature capacity develops a procedure for the exchange of common possessions that have greater than one proprietor."
+
+         ],
+         "cons":[  
+         ]
+      }
    }
  ]

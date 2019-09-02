@@ -1,40 +1,31 @@
 <mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav">
-      <p>Menu</p>
-  </mat-drawer>
   <div class="sidenav-content">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <button mat-icon-button (click)="drawer.toggle()">
                 <mat-icon mat-button>menu</mat-icon>
             </button>
-            
-            <span> Do you need distributed ledger technology ? </span>
+            <span> DLT decision tool </span>
             <span class="spacer"></span>
-            <mat-icon>favorite</mat-icon>
-
+            <img src="assets/logos/logo-side.png" width="170px" height="50px">
         </mat-toolbar-row> 
-
     </mat-toolbar>  
   </div>
 
   <div>  &nbsp; </div>
-  <ngx-fab    (click)="next(stepper);" [backgroundColor]="'#673AB7'" [iconClass]="'fas fa-arrow-right'" FabPosition="'bottom-right'"></ngx-fab>
+  <ngx-fab    (click)="next(stepper);" [backgroundColor]="'#607D8B'" [iconClass]="'fas fa-arrow-right'" FabPosition="'bottom-right'"></ngx-fab>
   <ngx-fab  *ngIf="done==1" [backgroundColor]="'#4CAF50'" [iconClass]="'fas fa-check'" FabPosition="'bottom-right'"></ngx-fab>
   <mat-card>
-
       <mat-card-header>
           <mat-card-title>Decision Wizard</mat-card-title>
           <!-- <mat-card-subtitle>Do you need DLT ?</mat-card-subtitle> -->
       </mat-card-header>
 
       <mat-card-content>
-
           <mat-horizontal-stepper linear #stepper (selectionChange)="onStepChanged($event)">
               <mat-step *ngFor="let con of configurations; let i = index" completed="false" > 
                 <form>
                   <ng-template matStepLabel>{{con.name}}</ng-template>
-                  
                   <div *ngIf= 'loadWizard'>
                         <app-wizard  [phase]="con" (nextEmiter)="setLoadNext($event)"></app-wizard>
 
@@ -42,26 +33,17 @@
                         </div>
                         <div id="two" *ngIf="con.id=='two'">
                         </div>
-                        <!-- <div  *ngIf="con.id=='three' && user_response>1" >
-                              <app-table [user_response]="user_response" [platform]="user_platform" (platformEmitter)="setUserPlatform($event)"></app-table>      
-                        </div>
-                        <div id="four" *ngIf="con.id=='four'">
-
-                          <app-summary [user_platform]="user_platform" [user_config]="user_response"></app-summary>
-
-                        </div> -->
                   </div> 
 
                   <div>
-                    <button mat-button *ngIf="this.isButtonVisible" (click)="loadMyWizard();" >Launch Wizard</button>
+                    <button mat-raised-button *ngIf="this.isButtonVisible" (click)="loadMyWizard();" >Launch Wizard</button>
                   </div>
                 </form>
               </mat-step >
 
-
               <mat-step  completed="false">
                   <ng-template matStepLabel>Type of DLT ?</ng-template>
-                  <h3>Choose a platform by clicking on a higlighted node.</h3>
+                  <h3>Choose a platform by clicking on a higlighted node. Use the table below to explore platform specific information</h3>
                   <div  *ngIf="user_response>1" >
                       <app-table [user_response]="user_response" [platform]="user_platform" (platformEmitter)="setUserPlatform($event)"></app-table>      
                   </div>

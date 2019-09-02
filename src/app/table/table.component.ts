@@ -176,12 +176,7 @@ export class TableComponent {
          .attr('class', 'node')
          .attr('r', 1e-6)
          .style("stroke", function(d : any) { 
-            if(d.data.type){
-               return d.data.type.includes(user_response) ? "#6200EE" : "#81D4FA";
-            }
-               
-            else
-               return "#81D4FA"
+            return "#607D8B";;
          })
          .style("fill", function(d :any) {
             return d._children ? "#512DA8" : "#fff";
@@ -215,7 +210,7 @@ export class TableComponent {
       .style("fill", function(d : any) {
          if(d.data.type){
             console.log("play");
-            return d.data.type.includes(user_response) ? "#81D4FA" : "#fff";
+            return d.data.type.includes(user_response) ? "#90439a" : "#fff";
             
          }  
          else

@@ -62,7 +62,7 @@ export class WizardComponent implements OnInit {
                 .style("border", "0px")
                 .style("border-radius", "8px")
                 .style("pointer-event", "none")
-                .style("background", "grey")		
+                .style("background", "#607D8B")		
                 .style("line-height", "20px")		
                 .style("color", "white")	
                 .style("opacity", 0);		
@@ -152,11 +152,9 @@ export class WizardComponent implements OnInit {
                 //console.log();
                 SETEMITTER.emit(d.data.output); 
               }
-              return d.data.type === "split" ? "#512DA8" :  d.data.type === "end" ? "#512DA8" : "#FF1744";
+              return "#607D8B";
             })
-            .style("fill", function(d : any) {
-                return d._children ? "#B39DDB" : d.data.type === "end" ? "#00C853" : "#fff";
-            });
+            ;
         // Add labels for the nodes
         nodeEnter.append('svg:text')
             .attr("text-anchor", "middle")
@@ -197,7 +195,7 @@ export class WizardComponent implements OnInit {
         // Update the node attributes and style
         nodeUpdate.select('rect')
           .style("fill", function(d : any) {
-              return d._children ? "#81D4FA" : d.data.type === "end" ? "#D1C4E9" : "#fff";
+              return d._children ? "#ffb74d" :  d.data.type === "leaf" ? "#f48fb1" : d.data.type === "end" ? "#D1C4E9" : "#fff";
           })
           .attr('cursor', 'pointer');
 
