@@ -20,7 +20,6 @@
           <mat-card-title>Decision Wizard</mat-card-title>
           <!-- <mat-card-subtitle>Do you need DLT ?</mat-card-subtitle> -->
       </mat-card-header>
-
       <mat-card-content>
           <mat-horizontal-stepper linear #stepper (selectionChange)="onStepChanged($event)">
               <mat-step *ngFor="let con of configurations; let i = index" completed="false" > 
