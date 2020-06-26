@@ -51,7 +51,6 @@ export class TableComponent {
       
    }
 
-
    @Input() 
    set platform(value) {
       if(!value)
